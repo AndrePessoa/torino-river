@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/docs/static/css/main.adbc560a.css",
-    "main.js": "/docs/static/js/main.721ba81f.js",
-    "static/js/453.e80d9938.chunk.js": "/docs/static/js/453.e80d9938.chunk.js",
-    "index.html": "/docs/index.html",
-    "main.adbc560a.css.map": "/docs/static/css/main.adbc560a.css.map",
-    "main.721ba81f.js.map": "/docs/static/js/main.721ba81f.js.map",
-    "453.e80d9938.chunk.js.map": "/docs/static/js/453.e80d9938.chunk.js.map"
+    "main.css": "/torino-river/static/css/main.adbc560a.css",
+    "main.js": "/torino-river/static/js/main.06114fd1.js",
+    "static/js/453.e80d9938.chunk.js": "/torino-river/static/js/453.e80d9938.chunk.js",
+    "index.html": "/torino-river/index.html",
+    "main.adbc560a.css.map": "/torino-river/static/css/main.adbc560a.css.map",
+    "main.06114fd1.js.map": "/torino-river/static/js/main.06114fd1.js.map",
+    "453.e80d9938.chunk.js.map": "/torino-river/static/js/453.e80d9938.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.adbc560a.css",
-    "static/js/main.721ba81f.js"
+    "static/js/main.06114fd1.js"
   ]
 }
