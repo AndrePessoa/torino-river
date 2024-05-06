@@ -40,6 +40,26 @@ function getMapPosition() {
   return getInterpolatePoint(propScrollPosition * 100);
 }
 
+function getScale() {
+  const minWidth = 750;
+  const maxWidth = 1200;
+  const minScale = 16;
+  const maxScale = 17;
+
+  const currentWidth = Math.min(
+    maxWidth,
+    Math.max(window.innerWidth, minWidth)
+  );
+
+  const currentScale =
+    minScale +
+    ((maxScale - minScale) * (currentWidth - minWidth)) / (maxWidth - minWidth);
+
+  debugger;
+
+  return currentScale;
+}
+
 function MapScrollControll() {
   const map = useMap();
   map.scrollWheelZoom.disable();
@@ -73,7 +93,10 @@ function App() {
       <div className="map">
         <MapContainer
           center={positionInit}
-          zoom={17}
+          zoom={getScale()}
+          dragging={false}
+          doubleClickZoom={false}
+          touchZoom={false}
           scrollWheelZoom={false}
           zoomControl={false}
         >

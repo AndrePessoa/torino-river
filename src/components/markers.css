@@ -1,0 +1,70 @@
+.club-popup {
+  display: flex;
+  gap: 1em;
+
+  & > div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .logo {
+    display: block;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    aspect-ratio: 1;
+    width: 100px;
+    color: transparent;
+  }
+
+  .description {
+    display: flex;
+    gap: 1em;
+
+    .name {
+      font-size: 1.5em;
+      font-family: "Poiret One", sans-serif;
+      font-weight: bolder;
+    }
+  }
+}
+
+.bridge-popup {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+
+  & > div {
+    display: flex;
+    flex-direction: column;
+    min-width: 250px;
+  }
+
+  .photo {
+    display: block;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: transparent;
+    min-height: 250px;
+  }
+
+  .description {
+    display: flex;
+    gap: 1em;
+
+    .name {
+      font-size: 1.5em;
+      font-family: "Poiret One", sans-serif;
+      font-weight: bolder;
+    }
+  }
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius: 0;
+
+  .leaflet-popup-content {
+    margin-left: 8px;
+  }
+}
