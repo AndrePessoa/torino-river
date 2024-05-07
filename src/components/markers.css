@@ -61,6 +61,12 @@
   }
 }
 
+.leaflet-popup-content-wrapper:has(.bridge-popup) {
+  .leaflet-popup-content {
+    margin-right: 8px;
+  }
+}
+
 .leaflet-popup-content-wrapper {
   border-radius: 0;
 

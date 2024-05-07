@@ -55,8 +55,6 @@ function getScale() {
     minScale +
     ((maxScale - minScale) * (currentWidth - minWidth)) / (maxWidth - minWidth);
 
-  debugger;
-
   return currentScale;
 }
 

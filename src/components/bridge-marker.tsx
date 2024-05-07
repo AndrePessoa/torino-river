@@ -7,19 +7,18 @@ type TBridgeMarker = {
 };
 
 function BridgeMarker({ id }: TBridgeMarker) {
-  const { coords, name, description, photo } = bridges[id] || {};
+  const { coords, name, description, photo, schema } = bridges[id] || {};
 
   return (
-    <Marker position={coords} icon={bridgeIcon()}>
+    <Marker position={coords} icon={bridgeIcon()} riseOnHover>
       <Popup offset={[5, 0]}>
         <div className="bridge-popup">
           <div className="description">
             <div className="name">{name}</div>
             <div>{description}</div>
           </div>
-          <div>
-            <img src={photo} className="photo" />
-          </div>
+          <img src={schema} alt="" className="photo" />
+          <img src={photo} alt="" className="photo" />
         </div>
       </Popup>
     </Marker>
