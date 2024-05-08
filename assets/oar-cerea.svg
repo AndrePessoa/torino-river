@@ -14,6 +14,7 @@
    inkscape:export-ydpi="96"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
   <sodipodi:namedview
@@ -26,9 +27,9 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#505050"
      inkscape:document-units="px"
-     inkscape:zoom="0.82237694"
-     inkscape:cx="146.52648"
-     inkscape:cy="435.32349"
+     inkscape:zoom="1.436411"
+     inkscape:cx="107.21166"
+     inkscape:cy="323.02733"
      inkscape:window-width="2000"
      inkscape:window-height="1257"
      inkscape:window-x="0"
@@ -36,41 +37,46 @@
      inkscape:window-maximized="0"
      inkscape:current-layer="layer1"
      showguides="true"
-     inkscape:lockguides="false">
+     inkscape:lockguides="true">
     <sodipodi:guide
        position="-19.657847,92.294681"
        orientation="0,-1"
        id="guide1"
-       inkscape:locked="false" />
+       inkscape:locked="true" />
     <sodipodi:guide
        position="33.13819,185.1701"
        orientation="1,0"
        id="guide2"
-       inkscape:locked="false" />
+       inkscape:locked="true" />
   </sodipodi:namedview>
   <defs
-     id="defs1" />
+     id="defs1">
+    <color-profile
+       name="Adobe-RGB-1998"
+       xlink:href="file:///System/Library/ColorSync/Profiles/AdobeRGB1998.icc"
+       id="color-profile1" />
+  </defs>
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1">
     <rect
-       style="fill:#7070ff;stroke-width:16.5707;-inkscape-stroke:none;fill-opacity:1"
+       style="fill:#ffffff;stroke-width:16.5707;-inkscape-stroke:none;fill-opacity:1"
        id="rect1"
        width="82.742706"
        height="171.97917"
        x="-0.19270325"
        y="1.527482e-14" />
     <rect
-       style="fill:#ffffff;stroke-width:18.3737;-inkscape-stroke:none"
+       style="fill:#68b8f1;stroke-width:18.3685;-inkscape-stroke:none;fill-opacity:1"
        id="rect2"
        width="82.550003"
-       height="79.684486"
+       height="79.63958"
        x="-1.7805311e-06"
        y="4.4231285e-14" />
     <path
        sodipodi:type="star"
-       style="fill:#ffec13;fill-opacity:1;stroke-width:17.2992;-inkscape-stroke:none"
+       style="fill:#61ce70;fill-opacity:1;stroke-width:17.2992;-inkscape-stroke:none"
        id="path2"
        inkscape:flatsided="false"
        sodipodi:sides="5"
@@ -85,5 +91,15 @@
        d="m 98.284616,25.97644 8.961804,-3.183757 0.25858,-9.507018 5.79729,7.539348 9.12162,-2.691903 -5.37889,7.843331 5.37888,7.843331 -9.12161,-2.691904 -5.79729,7.539348 -0.25858,-9.507019 z"
        inkscape:transform-center-x="1.2742268"
        transform="translate(-77.556824,53.708044)" />
+    <rect
+       style="display:none;opacity:0.70869;fill:#61ce70;fill-opacity:1;stroke:#f6f3ef;stroke-width:0.0997174"
+       id="rect3"
+       width="66.046112"
+       height="132.19194"
+       x="-0.00049808167"
+       y="13.543609"
+       rx="0.22012897"
+       ry="0.28975937"
+       sodipodi:insensitive="true" />
   </g>
 </svg>

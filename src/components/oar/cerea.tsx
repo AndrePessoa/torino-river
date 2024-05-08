@@ -10,7 +10,7 @@ export function OarCerea() {
       <defs id="defs1" />
       <g id="layer1">
         <rect
-          fill="#7070ff"
+          fill="#ffffff"
           id="rect1"
           width="82.742706"
           height="171.97917"
@@ -18,7 +18,7 @@ export function OarCerea() {
           y="1.527482e-14"
         />
         <rect
-          fill="#ffffff"
+          fill="#68b8f1"
           id="rect2"
           width="82.550003"
           height="79.684486"
@@ -26,7 +26,7 @@ export function OarCerea() {
           y="4.4231285e-14"
         />
         <path
-          fill="#fffa51"
+          fill="#61CE70"
           id="path2"
           d="m 98.284616,25.97644 8.961804,-3.183757 0.25858,-9.507018 5.79729,7.539348 9.12162,-2.691903 -5.37889,7.843331 5.37888,7.843331 -9.12161,-2.691904 -5.79729,7.539348 -0.25858,-9.507019 z"
           transform="translate(-77.556824,53.708044)"

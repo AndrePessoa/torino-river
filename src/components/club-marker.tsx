@@ -1,4 +1,4 @@
-import { Marker, Popup } from "react-leaflet";
+import { Marker } from "react-leaflet";
 import { clubs } from "../data";
 import { clubIcon } from "./club-icon";
 import { OarArmida } from "./oar/armida";
@@ -8,6 +8,7 @@ import { OarCaprera } from "./oar/caprera";
 import { OarAmicci } from "./oar/amici";
 import { OarCus } from "./oar/cus";
 import { OarEridano } from "./oar/eridano";
+import { Popup } from "./popup";
 
 type TClubMarker = {
   id: string;
@@ -32,7 +33,7 @@ function ClubMarker({ id }: TClubMarker) {
 
   return (
     <Marker key={id} position={coords} icon={clubIcon(id)}>
-      <Popup offset={[5, -65]}>
+      <Popup offset={[5, -65]} autoPan={false}>
         <div className="club-popup">
           <div>
             <a
