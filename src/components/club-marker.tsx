@@ -1,5 +1,3 @@
-import { Marker } from "react-leaflet";
-import { clubs } from "../data";
 import { clubIcon } from "./club-icon";
 import { OarArmida } from "./oar/armida";
 import { OarCerea } from "./oar/cerea";
@@ -8,7 +6,8 @@ import { OarCaprera } from "./oar/caprera";
 import { OarAmicci } from "./oar/amici";
 import { OarCus } from "./oar/cus";
 import { OarEridano } from "./oar/eridano";
-import { Popup } from "./popup";
+import { clubs } from "../data";
+import Marker from "./marker";
 
 type TClubMarker = {
   id: string;
@@ -32,26 +31,24 @@ function ClubMarker({ id }: TClubMarker) {
   const { coords, name, description, logo, site } = clubs[id] || {};
 
   return (
-    <Marker key={id} position={coords} icon={clubIcon(id)}>
-      <Popup offset={[5, -65]} autoPan={false}>
-        <div className="club-popup">
-          <div>
-            <a
-              className="logo"
-              href={site}
-              target="_blank"
-              rel="noreferrer"
-              style={{ backgroundImage: `url(${logo})` }}
-            >
-              Go to site
-            </a>
-          </div>
-          <div className="description">
-            <div className="name">{name}</div>
-            <div className="description">{description}</div>
-          </div>
+    <Marker id={id} position={coords} icon={clubIcon(id)} offset={[5, -65]}>
+      <div className="club-popup">
+        <div>
+          <a
+            className="logo"
+            href={site}
+            target="_blank"
+            rel="noreferrer"
+            style={{ backgroundImage: `url(${logo})` }}
+          >
+            Go to site
+          </a>
         </div>
-      </Popup>
+        <div className="description">
+          <div className="name">{name}</div>
+          <div className="description">{description}</div>
+        </div>
+      </div>
     </Marker>
   );
 }

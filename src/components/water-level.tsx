@@ -1,8 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import "./water-level.css";
 
-// TODO: this api is over a CROS policy, so we need to use a proxy
-
 interface IdroData {
   value: number;
   valid_type?: string;
@@ -30,13 +28,9 @@ function useWaterLevel(sensorId: string) {
 
     fetch(proxyUrl, { signal })
       .then((response) => {
-        console.log(response);
-
         return response.json();
       })
       .then((data) => {
-        console.log(data);
-
         const metric = data?.contents?.properties?.units_sym_html || {};
 
         const idro = (data?.contents?.properties?.idro || {}) as IdroData;
@@ -61,7 +55,7 @@ function useWaterLevel(sensorId: string) {
       });
 
     return () => {
-      // abortController.abort();
+      abortController.abort("Unmounted water level component");
     };
   }, [proxyUrl]);
 

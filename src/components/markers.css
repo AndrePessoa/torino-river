@@ -73,6 +73,7 @@
 }
 
 .leaflet-popup-content-wrapper {
+  background-color: white;
   border-radius: 0;
 
   .leaflet-popup-content {

@@ -1,0 +1,20 @@
+.weather-panel {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+
+  z-index: 2;
+  background: white;
+  box-shadow: 0 1px 1px black;
+  padding: 0.2em 0.5em;
+
+  text-decoration: none;
+  color: black;
+
+  & > div {
+    display: flex;
+    gap: 1em;
+  }
+}

@@ -63,3 +63,37 @@ section {
   align-items: center;
   height: 100vh;
 }
+
+#mobile-sidebar {
+  position: fixed;
+  overflow: auto;
+  display: grid;
+  align-content: center;
+  inset: 0;
+  z-index: 1000;
+
+  &:empty {
+    display: none;
+  }
+
+  .leaflet-popup-content-wrapper {
+    position: relative;
+    margin: 5px;
+    max-height: calc(100dvh - 10px);
+    overflow: auto;
+  }
+
+  a.leaflet-popup-close-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: none;
+    text-align: center;
+    width: 24px;
+    height: 24px;
+    font: 16px / 24px Tahoma, Verdana, sans-serif;
+    color: #757575;
+    text-decoration: none;
+    background: transparent;
+  }
+}
