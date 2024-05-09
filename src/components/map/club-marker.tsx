@@ -6,7 +6,7 @@ import { OarCaprera } from "./oar/caprera";
 import { OarAmicci } from "./oar/amici";
 import { OarCus } from "./oar/cus";
 import { OarEridano } from "./oar/eridano";
-import { clubs } from "../data";
+import { clubs } from "../../data";
 import Marker from "./marker";
 
 type TClubMarker = {

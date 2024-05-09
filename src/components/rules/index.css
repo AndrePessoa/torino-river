@@ -1,0 +1,13 @@
+section.rules {
+  position: relative;
+  flex-direction: column;
+  background-color: rgba(255, 255, 255, 1);
+  display: flex;
+  gap: 1em;
+  padding: 2em 2em 10em;
+  z-index: 2;
+
+  h2 {
+    font-family: "Poiret One", sans-serif;
+  }
+}

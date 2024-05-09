@@ -1,6 +1,6 @@
 import React, { MouseEvent, useCallback, useContext, useMemo } from "react";
+import { createPortal } from "react-dom";
 import { Marker as LeafletMarker } from "react-leaflet";
-import { Popup } from "./popup";
 import {
   DivIcon,
   Icon,
@@ -8,8 +8,8 @@ import {
   LatLngExpression,
   PointTuple,
 } from "leaflet";
-import { minWidth } from "../statics";
-import { createPortal } from "react-dom";
+import Popup from "./popup";
+import { minWidth } from "../../statics";
 
 type TMarkerMobileContext = {
   openedMarkerId: string | null;

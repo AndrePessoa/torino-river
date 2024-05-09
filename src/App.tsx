@@ -1,9 +1,11 @@
 import { Header } from "./components/header";
-import Map from "./components/map";
+import Map from "./components/map/index";
 import "./App.css";
-import { WaterLevel } from "./components/water-level";
-import { WeatherPanel } from "./components/weather";
-import { MarkerMobileProvider } from "./components/marker";
+import { WaterLevel } from "./components/map/water-level";
+import { WeatherPanel } from "./components/map/weather";
+import { MarkerMobileProvider } from "./components/map/marker";
+import { Rules } from "./components/rules";
+import { Footer } from "./components/footer";
 
 function App() {
   return (
@@ -13,9 +15,11 @@ function App() {
         <WaterLevel />
         <WeatherPanel />
         <div id="mobile-sidebar" />
-        <main>
+        <main id="map">
           <Map />
+          <Rules />
         </main>
+        <Footer />
       </div>
     </MarkerMobileProvider>
   );

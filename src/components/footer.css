@@ -1,0 +1,24 @@
+footer {
+  display: flex;
+  padding: 2em;
+  gap: 2em;
+  z-index: 100;
+  position: relative;
+  background: #4f4f84;
+  color: white;
+
+  a {
+    color: #bfbfec;
+  }
+
+  & > div {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+
+    &:last-child {
+      flex: 1;
+      justify-content: flex-end;
+    }
+  }
+}

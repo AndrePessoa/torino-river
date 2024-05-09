@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import "./weather.css";
-import { clubs } from "../data";
+import { clubs } from "../../data";
 
 interface IWeatherData {
   windDirection: number;

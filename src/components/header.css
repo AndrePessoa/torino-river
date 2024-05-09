@@ -10,4 +10,24 @@ header {
   left: 0;
   right: 0;
   z-index: 100;
+
+  & a {
+    text-decoration: none;
+    font-weight: bolder;
+    color: #2a1f43;
+  }
+
+  & nav {
+    display: flex;
+    flex: 1;
+    justify-content: end;
+    gap: 1em;
+
+    & a {
+      font-size: 1.2em;
+      text-decoration: none;
+      font-weight: bolder;
+      color: #2a1f43;
+    }
+  }
 }

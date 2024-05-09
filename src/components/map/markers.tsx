@@ -1,4 +1,4 @@
-import { bridges, clubs } from "../data";
+import { bridges, clubs } from "../../data";
 import BridgeMarker from "./bridge-marker";
 import ClubMarker, { ClubBrands } from "./club-marker";
 import "./markers.css";

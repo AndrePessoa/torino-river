@@ -1,6 +1,6 @@
 import { bridgeIcon } from "./bridge-icon";
 import Marker from "./marker";
-import { bridges } from "../data";
+import { bridges } from "../../data";
 
 type TBridgeMarker = {
   id: string;

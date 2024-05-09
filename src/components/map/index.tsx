@@ -4,8 +4,21 @@ import { LatLngTuple } from "leaflet";
 import { SVGEffects } from "./svg-effects";
 import { SVGPaths } from "./svg-paths";
 import { Markers } from "./markers";
-import { points, positionInit } from "../data";
-import { maxScale, maxWidth, minScale, minWidth } from "../statics";
+import { points, positionInit } from "../../data";
+import { maxScale, maxWidth, minScale, minWidth } from "../../statics";
+
+const scrollScale = window.innerWidth <= minWidth ? 10 : 5;
+const scrollPlaceholder = new Array(scrollScale).fill(0);
+
+const bounds = [
+  [45.06822531755551, 7.704789537663482] as LatLngTuple,
+  [45.00053781258869, 7.670460597601871] as LatLngTuple,
+];
+
+const whiteOverlay = [
+  [45.06928943946127, 7.635510606135246] as LatLngTuple,
+  [44.989521355461704, 7.7212064410178645] as LatLngTuple,
+];
 
 function getInterpolatePoint(percent: number) {
   const total = points.length - 1;
@@ -28,12 +41,14 @@ function getInterpolatePoint(percent: number) {
 }
 
 function getMapPosition() {
+  const windowHeight = window.innerHeight;
+  const mapSize = windowHeight * (scrollScale - 1);
   const currentScrollPosition = window.document.documentElement.scrollTop;
-  const lastScrollPosition =
-    window.document.documentElement.scrollHeight - window.innerHeight;
-  const propScrollPosition = currentScrollPosition / lastScrollPosition;
 
-  return getInterpolatePoint(propScrollPosition);
+  const propScrollPosition = currentScrollPosition / mapSize;
+  const clampedPropValue = Math.min(1, Math.max(0, propScrollPosition));
+
+  return getInterpolatePoint(clampedPropValue);
 }
 
 function getScale() {
@@ -70,24 +85,11 @@ function MapScrollControll() {
   return null;
 }
 
-const scrollScale = window.innerWidth <= minWidth ? 10 : 5;
-const scrollPlaceholder = new Array(scrollScale).fill(0);
-
-const bounds = [
-  [45.06822531755551, 7.704789537663482] as LatLngTuple,
-  [45.00053781258869, 7.670460597601871] as LatLngTuple,
-];
-
-const whiteOverlay = [
-  [45.06928943946127, 7.635510606135246] as LatLngTuple,
-  [44.989521355461704, 7.7212064410178645] as LatLngTuple,
-];
-
 function Map() {
   return (
     <>
       {scrollPlaceholder.map((_, i) => (
-        <section key={i} />
+        <section key={i} className="scaler" />
       ))}
       <div className="map">
         <MapContainer
