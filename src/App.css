@@ -93,3 +93,66 @@ section.scaler {
     background: transparent;
   }
 }
+
+.floating-panel {
+  display: flex;
+  flex-direction: column;
+
+  z-index: 2;
+  background: white;
+  box-shadow: 0 1px 1px black;
+  padding: 0.5em 0.75em;
+  gap: 0.15em;
+
+  text-decoration: none;
+  color: black;
+
+  & > div {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 1em;
+  }
+
+  &:hover {
+    background-color: rgb(224, 208, 250);
+    outline: 1px solid blue;
+  }
+}
+
+svg text {
+  font-family: "Poiret One", sans-serif;
+}
+
+.content {
+  h2,
+  h3,
+  p {
+    padding-bottom: 1em;
+  }
+
+  h2,
+  h3 {
+    font-weight: 700;
+    font-family: "Poiret One", sans-serif;
+  }
+
+  .col-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
+  }
+
+  .col-2-2_1 {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 1em;
+  }
+
+  @media screen and (max-width: 768px) {
+    .col-2,
+    .col-2-2_1 {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}

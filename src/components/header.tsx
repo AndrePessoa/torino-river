@@ -3,7 +3,7 @@ import "./header.css";
 export function Header() {
   return (
     <header>
-      <img src="./imgs/comune-torino.svg" height={60} alt="Comune di Torino" />
+      <img src="./imgs/mini-logo.svg" height={60} alt="Project logo" />
       <a href="#top">
         <h1>Fiume Po</h1>
       </a>

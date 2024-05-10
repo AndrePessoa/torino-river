@@ -1,5 +1,6 @@
 footer {
   display: flex;
+  justify-content: center;
   padding: 2em;
   gap: 2em;
   z-index: 100;
@@ -7,18 +8,29 @@ footer {
   background: #4f4f84;
   color: white;
 
+  .content {
+    display: flex;
+    width: 100%;
+    max-width: 1024px;
+    gap: 1em;
+
+    & > div {
+      display: flex;
+      flex-direction: column;
+
+      &:last-child {
+        flex: 1;
+        justify-content: center;
+      }
+    }
+  }
+
   a {
     color: #bfbfec;
   }
 
-  & > div {
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-
-    &:last-child {
-      flex: 1;
-      justify-content: flex-end;
-    }
+  img {
+    max-height: 15vw;
+    min-height: 150px;
   }
 }

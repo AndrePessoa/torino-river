@@ -6,6 +6,7 @@ import { WeatherPanel } from "./components/map/weather";
 import { MarkerMobileProvider } from "./components/map/marker";
 import { Rules } from "./components/rules";
 import { Footer } from "./components/footer";
+import { Metrology } from "./components/metrology";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <main id="map">
           <Map />
           <Rules />
+          <Metrology />
         </main>
         <Footer />
       </div>

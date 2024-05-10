@@ -1,23 +1,16 @@
-section.rules {
+section.metrology {
   position: relative;
   display: flex;
   justify-content: center;
-  background-color: rgba(255, 255, 255, 1);
+  background-color: rgb(164 251 233);
   z-index: 2;
 
   .content {
+    width: 100%;
     max-width: 1024px;
     display: flex;
     flex-direction: column;
     gap: 1em;
     padding: 2em 2em 5em;
-  }
-
-  .natanti-remi {
-    color: #4dbe6dff;
-  }
-
-  .natanti-canoa {
-    color: #66a2c9ff;
   }
 }

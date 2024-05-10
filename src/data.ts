@@ -133,4 +133,15 @@ export const bridges: Record<string, TBridgeData> = {
   },
 };
 
+export const waterLevelSensors = {
+  MONCALIERI: {
+    id: "001156901",
+    label: "Moncalieri",
+  },
+  MURAZZI: {
+    id: "001272703",
+    label: "Murazzi",
+  },
+};
+
 export const positionInit = points[0];

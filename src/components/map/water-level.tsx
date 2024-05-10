@@ -1,92 +1,39 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo } from "react";
 import "./water-level.css";
+import { useWaterLevel } from "../../hooks/useWaterLevel";
+import { waterLevelSensors } from "../../data";
 
-interface IdroData {
-  value: number;
-  valid_type?: string;
-  flag_type?: string;
-}
-
-function useWaterLevel(sensorId: string) {
-  const murazziSensor = `https://www.arpa.piemonte.it/rischi_naturali/data/tr/idro/${sensorId}.geojson`;
-
-  const proxyUrl = `https://projetos.entreoutros.com/torino/proxy.php?url=${encodeURI(
-    murazziSensor
-  )}`;
-
-  const [waterLevel, setWaterLevel] = useState<null | [string, any]>(null);
-  const [unit, setUnit] = useState<null | string>(null);
-  const [error, setError] = useState<null | Error>(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const abortController = new AbortController();
-    const signal = abortController.signal;
-
-    setLoading(true);
-    setError(null);
-
-    fetch(proxyUrl, { signal })
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        const metric = data?.contents?.properties?.units_sym_html || {};
-
-        const idro = (data?.contents?.properties?.idro || {}) as IdroData;
-
-        // sort by date
-        const sorted = Object.entries(idro).sort(
-          ([a], [b]) => new Date(b).getTime() - new Date(a).getTime()
-        );
-
-        const [latest] = sorted || [];
-
-        setUnit(metric);
-        setWaterLevel(latest || null);
-        setLoading(false);
-        setError(null);
-      })
-      .catch((error) => {
-        console.error(error);
-
-        setLoading(false);
-        setError(error);
-      });
-
-    return () => {
-      abortController.abort("Unmounted water level component");
-    };
-  }, [proxyUrl]);
-
-  return { waterLevel, unit, error, loading };
-}
-
-export function WaterLevel({ sensorId = "001272703" }) {
+export function WaterLevel({ sensorId = waterLevelSensors.MONCALIERI.id }) {
   const { waterLevel, unit, error, loading } = useWaterLevel(sensorId);
-  const [date, { value }] = waterLevel || ["", {}];
+  const [date, { value }] = waterLevel?.at(-1) || ["", {}];
 
   const title = useMemo(() => {
-    return `Sensor TORINO MURAZZI PO at ${new Date(date).toLocaleString()}`;
+    return `Sensor MONCALIERI PO at ${new Date(date).toLocaleString()}`;
   }, [date]);
 
-  if (loading || error) {
+  if (loading) {
+    return <div className="floating-panel water-level">Loading...</div>;
+  }
+
+  if (error) {
     return null;
   }
 
   return (
     <a
-      className="water-level"
+      className="floating-panel water-level"
       title={title}
-      href="https://www.arpa.piemonte.it/rischi_naturali/snippets_arpa_graphs/dettaglio_stazione/?id=001272703&param=idro"
+      href={`https://www.arpa.piemonte.it/rischi_naturali/snippets_arpa_graphs/dettaglio_stazione/?id=${sensorId}&param=idro`}
       target="_blank"
       rel="noreferrer"
     >
-      <span className="water-level__label">Water level:</span>
-      <span className="water-level__values">
-        <span className="water-level__value">{value}</span>
-        <span className="water-level__unit">{unit || "m"}</span>
-      </span>
+      <div>
+        <span className="water-level__label">Livelli del fiume</span>
+        <span className="water-level__values">
+          <span className="water-level__value">{value}</span>
+          <span className="water-level__unit">{unit || "m"}</span>
+        </span>
+      </div>
     </a>
   );
 }
