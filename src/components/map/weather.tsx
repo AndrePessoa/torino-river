@@ -9,23 +9,25 @@ import {
 export function WeatherPanel() {
   const { weatherData, error, loading } = useWeather();
 
+  const { data, units } = weatherData || {};
+
   const title = useMemo(() => {
-    return weatherData?.date
-      ? `Data from open-meteo.com to ${new Date(
-          weatherData?.date
-        ).toLocaleString()}`
+    const date = data?.at(0)?.date;
+
+    return date
+      ? `Data from open-meteo.com to ${new Date(date).toLocaleString()}`
       : "";
-  }, [weatherData]);
+  }, [data]);
 
   if (loading) {
     return <div className="floating-panel weather-panel">Loading...</div>;
   }
 
-  if (error || !weatherData) {
+  if (error || !data || !units) {
     return null;
   }
 
-  const { rain, temperature, windDirection, windVelocity, units } = weatherData;
+  const { rain, temperature, windDirection, windVelocity } = data.at(0) || {};
 
   return (
     <a

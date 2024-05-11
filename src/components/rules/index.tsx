@@ -7,13 +7,15 @@ export function Rules() {
         <div>
           <h2>PER LA NAVIGAZIONE A REMI SUL FIUME PO</h2>
         </div>
+        <div>
+          <p>
+            Il nostro grande Fiume ospita vari tipi di imbarcazioni, e vuole che
+            siano rispettate certe regole soprattutto perché nessuno si faccia
+            male.
+          </p>
+        </div>
         <div className="col-2-2_1">
           <div>
-            <p>
-              Il nostro grande Fiume ospita vari tipi di imbarcazioni, e vuole
-              che siano rispettate certe regole soprattutto perché nessuno si
-              faccia male.
-            </p>
             <p>
               In particolare le imbarcazioni da canottaggio, procedendo in
               direzione opposta allo sguardo dei vogatori, sono ad alto rischio
@@ -22,35 +24,48 @@ export function Rules() {
               suo battesimo del remo, rispettare le seguenti regole di
               direzione.
             </p>
-            <p>
-              a) in salita (da San Mauro verso Moncalieri) la sponda destra del
-              fiume (lato collinare) se{" "}
-              <span className="natanti-remi">natanti a remi</span>; la sponda
-              sinistra del fiume (lato Borgo Medioevale) se natanti a{" "}
-              <span className="natanti-canoa">pagaia, venete o pedalo</span>;
-            </p>
-            <p>
-              b) in discesa (da Moncalieri verso San Mauro) la sponda sinistra
-              del fiume (lato Borgo Medioevale) se{" "}
-              <span className="natanti-remi">natanti a remi</span>; la sponda
-              destra del Fiume (lato collinare) se{" "}
-              <span className="natanti-canoa">
-                natanti a pagaia, venete o pedalo
-              </span>
-              .
-            </p>
+            <blockquote>
+              <p>
+                a) in salita (da San Mauro verso Moncalieri) la sponda destra
+                del fiume (lato collinare) se{" "}
+                <span className="natanti-remi">natanti a remi</span>; la sponda
+                sinistra del fiume (lato Borgo Medioevale) se natanti a{" "}
+                <span className="natanti-canoa">pagaia, venete o pedalo</span>;
+              </p>
+              <p>
+                b) in discesa (da Moncalieri verso San Mauro) la sponda sinistra
+                del fiume (lato Borgo Medioevale) se{" "}
+                <span className="natanti-remi">natanti a remi</span>; la sponda
+                destra del Fiume (lato collinare) se{" "}
+                <span className="natanti-canoa">
+                  natanti a pagaia, venete o pedalo
+                </span>
+                .
+              </p>
+              <cite>
+                <a
+                  className="download"
+                  href="http://arianna.cr.piemonte.it/regolafo/dettaglioRegolamento.do?urnRegolamento=urn:nir:regione.piemonte:regolamento:1996-03-28;2"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Regolamento regionale n. 2 del 28 marzo 1996 V0
+                </a>
+              </cite>
+            </blockquote>
           </div>
           <div>
-            <img src="./imgs/sensi-di-marcha.svg" />
+            <img src="./imgs/sensi-di-marcha.svg" alt="" />
           </div>
         </div>
         <div>
           <p>
             Chi procede più lento deve lasciare spazio a chi va più veloce e
             avvertire a gran voce della propria presenza. Si ricordi che in
-            gergo “andare a riva” significa accostare verso l’argine della
-            propria mano da tenere, mentre “allargare” significa avvicinarsi al
-            centro del fiume.
+            gergo <strong>“andare a riva”</strong> significa accostare verso
+            l’argine della propria mano da tenere, mentre{" "}
+            <strong>“allargare”</strong> significa avvicinarsi al centro del
+            fiume.
           </p>
           <p>
             Ogni ponte ha le sue particolari regole di direzione, ancora più

@@ -3,15 +3,25 @@ header {
   position: fixed;
   display: flex;
   align-items: center;
-  padding: 0.5em 1em;
-  gap: 1em;
+  padding: 0.5em 2em 0.5em 1em;
+  gap: 1.5em;
   background: rgb(255, 255, 255);
   top: 0;
   left: 0;
   right: 0;
   z-index: 100;
 
+  .content {
+    display: flex;
+    width: 100%;
+    max-width: 1280px;
+    margin: auto;
+  }
+
   & a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35em;
     text-decoration: none;
     font-weight: bolder;
     color: #2a1f43;
@@ -21,9 +31,11 @@ header {
     display: flex;
     flex: 1;
     justify-content: end;
-    gap: 1em;
+    align-items: center;
+    gap: 2em;
 
     & a {
+      gap: 0.35em;
       font-size: 1.2em;
       text-decoration: none;
       font-weight: bolder;

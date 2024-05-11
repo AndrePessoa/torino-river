@@ -45,7 +45,7 @@ export function useWaterLevel(sensorId: string) {
         setError(null);
       })
       .catch((error) => {
-        console.error(error);
+        if (abortController.signal.aborted) return;
 
         setLoading(false);
         setError(error);

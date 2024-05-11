@@ -10,7 +10,63 @@ section.metrology {
     max-width: 1024px;
     display: flex;
     flex-direction: column;
-    gap: 1em;
+    gap: 2em;
     padding: 2em 2em 5em;
+
+    h2 {
+      padding-bottom: 0;
+    }
+  }
+
+  .metrics {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25em;
+
+    .metric {
+      background-color: white;
+      padding: 0.5em;
+    }
+  }
+
+  .legend {
+    padding: 0 0.5em;
+    text-align: right;
+  }
+
+  .alert {
+    display: grid;
+    justify-content: center;
+    padding: 2em;
+    background: #45efcc;
+    font-style: italic;
+  }
+
+  .meteology-cards {
+    display: flex;
+    gap: 0.5em;
+
+    @media screen and (max-width: 768px) {
+      & {
+        flex-direction: column;
+      }
+    }
+  }
+
+  .meteology-card {
+    background: white;
+
+    h4 {
+      padding: 0.5em;
+      background: #45efcc;
+      text-align: center;
+    }
+
+    .meteology-data {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5em;
+      padding: 0.5em;
+    }
   }
 }

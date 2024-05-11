@@ -94,6 +94,27 @@ section.scaler {
   }
 }
 
+.floating-panels {
+  position: fixed;
+  z-index: 2;
+  left: 10px;
+  bottom: 10px;
+  right: 10px;
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+
+  @media screen and (max-width: 768px) {
+    & {
+      font-size: 0.8em;
+      flex-direction: column;
+      right: 5px;
+      bottom: 5px;
+      gap: 0.5em;
+    }
+  }
+}
+
 .floating-panel {
   display: flex;
   flex-direction: column;
@@ -123,11 +144,27 @@ svg text {
   font-family: "Poiret One", sans-serif;
 }
 
+h1 {
+  font-size: 2em;
+}
+
+h2 {
+  font-size: 1.75em;
+}
+
+h3 {
+  font-size: 1.5em;
+}
+
 .content {
   h2,
   h3,
   p {
     padding-bottom: 1em;
+  }
+
+  p:last-child {
+    padding-bottom: 0;
   }
 
   h2,
@@ -148,11 +185,31 @@ svg text {
     gap: 1em;
   }
 
+  blockquote {
+    padding: 0.5em 0 0 1em;
+    border-left: 5px solid;
+
+    p {
+      font-style: italic;
+    }
+
+    cite {
+      font-size: 0.75em;
+      text-align: right;
+    }
+  }
+
   @media screen and (max-width: 768px) {
     .col-2,
     .col-2-2_1 {
       display: flex;
       flex-direction: column;
     }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .desktop-only {
+    display: none;
   }
 }

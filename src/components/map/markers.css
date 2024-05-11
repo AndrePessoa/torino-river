@@ -80,3 +80,12 @@
     margin-left: 8px;
   }
 }
+
+.leaflet-marker-icon.leaflet-interactive svg {
+  transform-origin: 50% 95%;
+  transition: all 0.2s;
+}
+
+.leaflet-marker-icon.leaflet-interactive:hover svg {
+  transform: scale(1.2);
+}

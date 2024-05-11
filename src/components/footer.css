@@ -12,11 +12,17 @@ footer {
     display: flex;
     width: 100%;
     max-width: 1024px;
+    padding: 0 2em;
     gap: 1em;
 
     & > div {
       display: flex;
       flex-direction: column;
+      gap: 0.75em;
+
+      p {
+        padding: 0;
+      }
 
       &:last-child {
         flex: 1;

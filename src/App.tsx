@@ -13,8 +13,10 @@ function App() {
     <MarkerMobileProvider>
       <div className="App">
         <Header />
-        <WaterLevel />
-        <WeatherPanel />
+        <div className="floating-panels">
+          <WaterLevel />
+          <WeatherPanel />
+        </div>
         <div id="mobile-sidebar" />
         <main id="map">
           <Map />

@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import { waterLevelSensors } from "../../data";
 import { useWaterLevel } from "../../hooks/useWaterLevel";
+import { IWeatherData, useWeather } from "../../hooks/useWeather";
 import { Chart, TDatasets, TLabels } from "./chart";
 import "./index.css";
 
@@ -35,6 +36,7 @@ function useWaterLevelsData() {
     labels,
     data: waterDataset || [],
     loading: moncalieriData.loading || murazziData.loading,
+    error: moncalieriData.error || murazziData.error,
   };
 }
 
@@ -48,37 +50,40 @@ function CurrentWaterLevels({ data, labels }: TCurrentWaterLevelProps) {
 
   return (
     <>
-      {data.map((dataset) => (
-        <p>
-          <strong>{dataset.label}</strong>: <span>{dataset.data.at(-1)}m</span>
-        </p>
-      ))}
-      <div>
-        <small>Last data at {labels.at(-1)}</small>
-      </div>
-      <div>
-        <small>
-          Data from {""}
-          <a
-            href="https://www.arpa.piemonte.it/rischi_naturali"
-            target="_blank"
-            rel="noreferrer"
-          >
-            ARPA
-          </a>
-        </small>
+      <div className="metrics">
+        {data.map((dataset) => (
+          <div key={dataset.label} className="metric">
+            <strong>{dataset.label}</strong>:{" "}
+            <span>{dataset.data.at(-1)}m</span>
+          </div>
+        ))}
+        <div className="legend">
+          <div>
+            <small>
+              Last data at {labels.at(-1)} from {""}
+              <a
+                href="https://www.arpa.piemonte.it/rischi_naturali"
+                target="_blank"
+                rel="noreferrer"
+              >
+                ARPA
+              </a>
+            </small>
+          </div>
+        </div>
       </div>
     </>
   );
 }
 
-export function Metrology() {
-  const { labels, data, loading } = useWaterLevelsData();
+function Hidrometry() {
+  const { labels, data, error, loading } = useWaterLevelsData();
 
   return (
-    <section className="metrology" id="metrology">
-      <div className="content">
-        <h2>METEO E IDROMETRI</h2>
+    <>
+      {loading && <div className="alert">loading...</div>}
+      {error && <div className="alert">{error.message}</div>}
+      {!loading && !error && (
         <div className="col-2">
           <div>
             {!loading ? (
@@ -96,6 +101,76 @@ export function Metrology() {
             )}
           </div>
         </div>
+      )}
+    </>
+  );
+}
+
+type TMeteologyCardProps = {
+  data: IWeatherData;
+};
+
+function MeteologyCard({ data }: TMeteologyCardProps) {
+  const { windDirection, windVelocity, rain, temperature, date } = data;
+  const time = new Date(date).toLocaleTimeString();
+
+  return (
+    <div className="meteology-card">
+      <h4>{time}</h4>
+      <div className="meteology-data">
+        <span>Vento</span>
+        <span>{windDirection}°</span>
+        <span></span>
+        <span>{windVelocity}m/s</span>
+        <span>Pioggia</span>
+        <span>{rain}mm</span>
+        <span>Temperatura</span>
+        <span>{temperature}°C</span>
+      </div>
+    </div>
+  );
+}
+
+function Meteology() {
+  const { weatherData, loading, error } = useWeather(5);
+
+  return (
+    <>
+      {loading && <div className="alert">loading...</div>}
+      {error && <div className="alert">{error.message}</div>}
+      {!loading && !error && (
+        <div>
+          <h3>Meteo</h3>
+          <div className="meteology-cards">
+            {weatherData?.data.map((d) => (
+              <MeteologyCard data={d} />
+            ))}
+          </div>
+          <div className="legend">
+            <small>
+              Data from {""}
+              <a
+                href="https://open-meteo.com/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Open-Meteo
+              </a>
+            </small>
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
+
+export function Metrology() {
+  return (
+    <section className="metrology" id="metrology">
+      <div className="content">
+        <h2>METEO E IDROMETRI</h2>
+        <Hidrometry />
+        <Meteology />
       </div>
     </section>
   );
