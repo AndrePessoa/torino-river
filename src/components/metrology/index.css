@@ -55,6 +55,7 @@ section.metrology {
 
   .meteology-card {
     background: white;
+    flex: 1;
 
     h4 {
       padding: 0.5em;

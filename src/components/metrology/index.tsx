@@ -118,14 +118,14 @@ function MeteologyCard({ data }: TMeteologyCardProps) {
     <div className="meteology-card">
       <h4>{time}</h4>
       <div className="meteology-data">
-        <small>Vento</small>
-        <span>{windDirection}°</span>
-        <span></span>
-        <span>{windVelocity}m/s</span>
         <small>Pioggia</small>
         <span>{rain}mm</span>
         <small>Temperatura</small>
         <span>{temperature}°C</span>
+        <small>Vento</small>
+        <span>{windDirection}°</span>
+        <span></span>
+        <span>{windVelocity}m/s</span>
       </div>
     </div>
   );
