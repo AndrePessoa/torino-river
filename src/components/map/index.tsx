@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { MapContainer, SVGOverlay, TileLayer, useMap } from "react-leaflet";
 import { LatLngTuple } from "leaflet";
 import { SVGEffects } from "./svg-effects";
@@ -40,7 +40,24 @@ function getInterpolatePoint(percent: number) {
   return { lat, lng };
 }
 
-function getMapPosition() {
+function updateTargetPosition(percent: number) {
+  const target = document.getElementById("target");
+  if (!target) return;
+
+  const distancePathCandidate = document.getElementById("distance");
+
+  if (!distancePathCandidate || distancePathCandidate.tagName !== "path")
+    return;
+
+  const distancePath = distancePathCandidate as unknown as SVGPathElement;
+  const distance = distancePath.getTotalLength() ?? 0;
+  const point = distancePath.getPointAtLength(distance * percent);
+
+  target.setAttribute("cx", point.x.toString());
+  target.setAttribute("cy", point.y.toString());
+}
+
+function getMapProportion() {
   const windowHeight = window.innerHeight;
   const mapSize = windowHeight * (scrollScale - 1);
   const currentScrollPosition = window.document.documentElement.scrollTop;
@@ -48,7 +65,7 @@ function getMapPosition() {
   const propScrollPosition = currentScrollPosition / mapSize;
   const clampedPropValue = Math.min(1, Math.max(0, propScrollPosition));
 
-  return getInterpolatePoint(clampedPropValue);
+  return clampedPropValue;
 }
 
 function getScale() {
@@ -64,13 +81,25 @@ function getScale() {
   return currentScale;
 }
 
-function MapScrollControll() {
+type TMapScrollControlProps = {
+  onUpdate: (distance: number) => void;
+  children?: JSX.Element;
+};
+
+function MapScrollControl({ onUpdate, children }: TMapScrollControlProps) {
   const map = useMap();
   map.scrollWheelZoom.disable();
 
   useEffect(() => {
     function followPath() {
-      map.setView(getMapPosition());
+      const currentPercent = getMapProportion();
+
+      updateTargetPosition(currentPercent);
+      const point = getInterpolatePoint(currentPercent);
+
+      onUpdate?.(currentPercent);
+
+      map.setView(point);
     }
 
     followPath();
@@ -80,12 +109,18 @@ function MapScrollControll() {
     return () => {
       window.removeEventListener("scroll", followPath);
     };
-  }, [map]);
+  }, [map, onUpdate]);
 
-  return null;
+  return children ?? null;
 }
 
-function Map() {
+type TMapProps = {
+  children?: (distance: number) => JSX.Element;
+};
+
+function Map({ children }: TMapProps) {
+  const [distance, setDistance] = useState(0);
+
   return (
     <>
       {scrollPlaceholder.map((_, i) => (
@@ -101,7 +136,9 @@ function Map() {
           scrollWheelZoom={false}
           zoomControl={false}
         >
-          <MapScrollControll />
+          <MapScrollControl onUpdate={setDistance}>
+            {children?.(distance)}
+          </MapScrollControl>
           <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
           <Markers />
           <SVGOverlay

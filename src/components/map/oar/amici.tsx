@@ -10,7 +10,7 @@ export function OarAmicci() {
       <defs id="defs1" />
       <g id="layer1" transform="translate(0.19270325)">
         <rect
-          fill="#2b49a7"
+          fill="#008fd5"
           id="rect1"
           width="82.742706"
           height="171.97917"

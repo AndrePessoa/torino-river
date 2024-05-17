@@ -1,9 +1,9 @@
 import { useMemo } from "react";
 import "./water-level.css";
-import { useWaterLevel } from "../../hooks/useWaterLevel";
 import { waterLevelSensors } from "../../data";
+import { useWaterLevel } from "../../store/water/hooks";
 
-export function WaterLevel({ sensorId = waterLevelSensors.MONCALIERI.id }) {
+export function WaterLevel({ sensorId = waterLevelSensors.CARIGNANO.id }) {
   const { waterLevel, unit, error, loading } = useWaterLevel(sensorId);
   const [date, { value }] = waterLevel?.at(-1) || ["", {}];
 

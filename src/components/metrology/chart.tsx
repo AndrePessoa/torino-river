@@ -26,8 +26,8 @@ export const options: ChartOptions<"line"> = {
   plugins: {},
   scales: {
     y: {
-      min: 0,
-      max: 6,
+      min: 1,
+      max: 4,
     },
     x: {
       ticks: {

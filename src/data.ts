@@ -142,6 +142,10 @@ export const waterLevelSensors = {
     id: "001272703",
     label: "Murazzi",
   },
+  CARIGNANO: {
+    id: "001058900",
+    label: "Carignano",
+  },
 };
 
 export const positionInit = points[0];

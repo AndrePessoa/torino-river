@@ -1,13 +1,15 @@
 import { useMemo } from "react";
 import { waterLevelSensors } from "../../data";
-import { useWaterLevel } from "../../hooks/useWaterLevel";
-import { IWeatherData, useWeather } from "../../hooks/useWeather";
 import { Chart, TDatasets, TLabels } from "./chart";
 import "./index.css";
+import { IWeatherData } from "../../store/weather/types";
+import { useWeather } from "../../store/weather/hook";
+import { useWaterLevel } from "../../store/water/hooks";
 
 function useWaterLevelsData() {
   const moncalieriData = useWaterLevel(waterLevelSensors.MONCALIERI.id);
   const murazziData = useWaterLevel(waterLevelSensors.MURAZZI.id);
+  const carignanoData = useWaterLevel(waterLevelSensors.CARIGNANO.id);
 
   const labels = useMemo(() => {
     return moncalieriData.waterLevel?.map(([time]) =>
@@ -17,6 +19,12 @@ function useWaterLevelsData() {
 
   const waterDataset = useMemo(() => {
     return [
+      {
+        label: waterLevelSensors.CARIGNANO.label,
+        data: carignanoData.waterLevel?.map(([_, { value }]) => value) || [],
+        borderColor: "#db8223",
+        backgroundColor: "rgba(219, 130, 35, .5)",
+      },
       {
         label: waterLevelSensors.MONCALIERI.label,
         data: moncalieriData.waterLevel?.map(([_, { value }]) => value) || [],
@@ -30,13 +38,14 @@ function useWaterLevelsData() {
         backgroundColor: "rgba(102, 162, 201, .5)",
       },
     ];
-  }, [moncalieriData, murazziData]);
+  }, [moncalieriData, murazziData, carignanoData]);
 
   return {
     labels,
     data: waterDataset || [],
-    loading: moncalieriData.loading || murazziData.loading,
-    error: moncalieriData.error || murazziData.error,
+    loading:
+      moncalieriData.loading || murazziData.loading || carignanoData.loading,
+    error: moncalieriData.error || murazziData.error || carignanoData.error,
   };
 }
 
