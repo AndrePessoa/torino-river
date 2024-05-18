@@ -1,10 +1,10 @@
 import { useMemo } from "react";
 import { waterLevelSensors } from "../../data";
-import { Chart, TDatasets, TLabels } from "./chart";
-import "./index.css";
-import { IWeatherData } from "../../store/weather/types";
 import { useWeather } from "../../store/weather/hook";
 import { useWaterLevel } from "../../store/water/hooks";
+import { Chart, TDatasets, TLabels } from "./chart";
+import "./index.css";
+import { MeteologyCard } from "./meteo-card";
 
 function useWaterLevelsData() {
   const moncalieriData = useWaterLevel(waterLevelSensors.MONCALIERI.id);
@@ -112,31 +112,6 @@ function Hidrometry() {
         </div>
       )}
     </>
-  );
-}
-
-type TMeteologyCardProps = {
-  data: IWeatherData;
-};
-
-function MeteologyCard({ data }: TMeteologyCardProps) {
-  const { windDirection, windVelocity, rain, temperature, date } = data;
-  const time = new Date(date).toLocaleTimeString();
-
-  return (
-    <div className="meteology-card">
-      <h4>{time}</h4>
-      <div className="meteology-data">
-        <small>Pioggia</small>
-        <span>{rain}mm</span>
-        <small>Temperatura</small>
-        <span>{temperature}°C</span>
-        <small>Vento</small>
-        <span>{windDirection}°</span>
-        <span></span>
-        <span>{windVelocity}m/s</span>
-      </div>
-    </div>
   );
 }
 

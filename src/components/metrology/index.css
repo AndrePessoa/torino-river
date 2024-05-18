@@ -52,22 +52,4 @@ section.metrology {
       }
     }
   }
-
-  .meteology-card {
-    background: white;
-    flex: 1;
-
-    h4 {
-      padding: 0.5em;
-      background: #45efcc;
-      text-align: center;
-    }
-
-    .meteology-data {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.5em;
-      padding: 0.5em;
-    }
-  }
 }

@@ -1,16 +1,24 @@
 import { Provider } from "react-redux";
+import { createHashRouter, RouterProvider } from "react-router-dom";
 import { Header } from "./components/header";
-import Map from "./components/map/index";
-import "./App.css";
 import { WaterLevel } from "./components/map/water-level";
 import { WeatherPanel } from "./components/map/weather";
 import { MarkerMobileProvider } from "./components/map/marker";
-import { Rules } from "./components/rules";
 import { Footer } from "./components/footer";
-import { Metrology } from "./components/metrology";
 import { store } from "./store";
+import { Home } from "./pages/home";
+import "./App.css";
 
-const totalDistance = 7450;
+const HashRouter = createHashRouter([
+  {
+    path: "/test",
+    element: <div>Opa</div>,
+  },
+  {
+    path: "*",
+    element: <Home />,
+  },
+]);
 
 function App() {
   return (
@@ -24,9 +32,7 @@ function App() {
           </div>
           <div id="mobile-sidebar" />
           <main id="map">
-            <Map>{(distance) => <div>{distance * totalDistance}m</div>}</Map>
-            <Rules />
-            <Metrology />
+            <RouterProvider router={HashRouter} />
           </main>
           <Footer />
         </div>
