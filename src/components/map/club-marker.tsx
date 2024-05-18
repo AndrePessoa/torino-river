@@ -8,6 +8,7 @@ import { OarCus } from "./oar/cus";
 import { OarEridano } from "./oar/eridano";
 import { clubs } from "../../data";
 import Marker from "./marker";
+import { OarCanoa } from "./oar/canoa";
 
 type TClubMarker = {
   id: string;
@@ -23,6 +24,7 @@ export function ClubBrands() {
       <OarAmicci />
       <OarCus />
       <OarEridano />
+      <OarCanoa />
     </div>
   );
 }
