@@ -158,7 +158,7 @@ h3 {
 
     .content {
       width: 100vw;
-      max-width: 1024px;
+      max-width: 1280px;
       display: flex;
       flex-direction: column;
       gap: 1em;
