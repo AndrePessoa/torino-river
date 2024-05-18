@@ -3,10 +3,10 @@ footer {
   justify-content: center;
   padding: 2em;
   gap: 2em;
-  z-index: 100;
+  z-index: 1;
   position: relative;
-  background: #4f4f84;
-  color: white;
+  background: var(--color-bg-blue);
+  color: var(--color-text-white);
 
   .content {
     display: flex;
@@ -32,7 +32,11 @@ footer {
   }
 
   a {
-    color: #bfbfec;
+    color: var(--color-text-lightblue);
+
+    &:hover {
+      color: var(--color-text-blue);
+    }
   }
 
   img {

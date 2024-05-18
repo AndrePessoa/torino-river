@@ -49,6 +49,9 @@ function ClubMarker({ id }: TClubMarker) {
         <div className="description">
           <div className="name">{name}</div>
           <div className="description">{description}</div>
+          <a className="button" href={`#/clubs/${id}`}>
+            Scopri di più
+          </a>
         </div>
       </div>
     </Marker>

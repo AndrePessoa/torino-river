@@ -1,5 +1,21 @@
 /* Basic CSS */
 
+:root {
+  --color-bg-blue: #4f4f84;
+  --color-bg-darkblue: #282842;
+  --color-bg-aquablue: #a4fbe9;
+  --color-text: #000;
+  --color-text-white: white;
+  --color-text-lightblue: #bfbfec;
+  --color-text-blue: #9898c8;
+  --header-height: 76px;
+}
+
+html {
+  scroll-padding-top: var(--header-height);
+  scroll-behavior: smooth;
+}
+
 .map {
   position: fixed;
   inset: 0;
@@ -59,6 +75,33 @@ section.scaler {
   display: flex;
   align-items: end;
   justify-content: space-between;
+  pointer-events: none;
+
+  .floating-panel {
+    display: flex;
+    flex-direction: column;
+    pointer-events: all;
+
+    z-index: 2;
+    background: white;
+    box-shadow: 0 1px 1px black;
+    padding: 0.5em 0.75em;
+    gap: 0.15em;
+
+    text-decoration: none;
+    color: black;
+
+    & > div {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 1em;
+    }
+
+    &:hover {
+      background-color: rgb(224, 208, 250);
+      outline: 1px solid var(--color-bg-blue);
+    }
+  }
 
   @media screen and (max-width: 768px) {
     & {
@@ -68,31 +111,6 @@ section.scaler {
       bottom: 5px;
       gap: 0.5em;
     }
-  }
-}
-
-.floating-panel {
-  display: flex;
-  flex-direction: column;
-
-  z-index: 2;
-  background: white;
-  box-shadow: 0 1px 1px black;
-  padding: 0.5em 0.75em;
-  gap: 0.15em;
-
-  text-decoration: none;
-  color: black;
-
-  & > div {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 1em;
-  }
-
-  &:hover {
-    background-color: rgb(224, 208, 250);
-    outline: 1px solid blue;
   }
 }
 
@@ -112,6 +130,43 @@ h3 {
   font-size: 1.5em;
 }
 
+.page {
+  margin-top: var(--header-height);
+
+  .title {
+    position: sticky;
+    top: var(--header-height);
+    z-index: 1;
+    background: var(--color-bg-blue);
+    color: var(--color-text-white);
+    padding: 0 2em;
+
+    h1 {
+      flex: 1;
+    }
+
+    .content {
+      flex-direction: row;
+      padding: 1em;
+    }
+  }
+
+  article {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .content {
+      width: 100vw;
+      max-width: 1024px;
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
+      padding: 2em 2em 5em;
+    }
+  }
+}
+
 .content {
   h2,
   h3,
@@ -123,6 +178,7 @@ h3 {
     padding-bottom: 0;
   }
 
+  h1,
   h2,
   h3 {
     font-weight: 700;
@@ -161,6 +217,18 @@ h3 {
       display: flex;
       flex-direction: column;
     }
+  }
+}
+
+a.button {
+  font-weight: 500;
+  padding: 0.5em 1em;
+  background-color: var(--color-bg-blue);
+  color: var(--color-text-white);
+  text-decoration: none;
+
+  &:hover {
+    background-color: var(--color-bg-darkblue);
   }
 }
 

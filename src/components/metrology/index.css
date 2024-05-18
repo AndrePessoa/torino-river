@@ -2,7 +2,7 @@ section.metrology {
   position: relative;
   display: flex;
   justify-content: center;
-  background-color: rgb(164 251 233);
+  background-color: var(--color-bg-aquablue);
   z-index: 2;
 
   .content {

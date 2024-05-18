@@ -126,7 +126,7 @@ function Map({ children }: TMapProps) {
       {scrollPlaceholder.map((_, i) => (
         <section key={i} className="scaler" />
       ))}
-      <div className="map">
+      <div className="map" id="map">
         <MapContainer
           center={positionInit}
           zoom={getScale()}

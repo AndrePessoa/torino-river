@@ -15,6 +15,9 @@ function BridgeMarker({ id }: TBridgeMarker) {
         <div className="description">
           <div className="name">{name}</div>
           <div>{description}</div>
+          <a className="button" href={`#/bridges/${id}`}>
+            Scopri di più
+          </a>
         </div>
         <img src={schema} alt="" className="photo" />
         <img src={photo} alt="" className="photo" />

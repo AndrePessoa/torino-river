@@ -60,8 +60,6 @@ function MarkerMobile({
 }) {
   const { openedMarkerId, setOpenedMarker } = useMarkerMobile();
 
-  console.log(openedMarkerId, id);
-
   const closeHandler = useCallback(
     (event: MouseEvent) => {
       event.preventDefault();

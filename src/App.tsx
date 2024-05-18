@@ -1,22 +1,38 @@
 import { Provider } from "react-redux";
-import { createHashRouter, RouterProvider } from "react-router-dom";
+import { createHashRouter, RouterProvider, Outlet } from "react-router-dom";
 import { Header } from "./components/header";
-import { WaterLevel } from "./components/map/water-level";
-import { WeatherPanel } from "./components/map/weather";
 import { MarkerMobileProvider } from "./components/map/marker";
 import { Footer } from "./components/footer";
 import { store } from "./store";
 import { Home } from "./pages/home";
+import { Clubs } from "./pages/clubs";
 import "./App.css";
+import ScrollToAnchor from "./components/link-anchor";
+import { Bridges } from "./pages/bridges";
 
 const HashRouter = createHashRouter([
   {
-    path: "/test",
-    element: <div>Opa</div>,
-  },
-  {
-    path: "*",
-    element: <Home />,
+    path: "/",
+    element: (
+      <>
+        <ScrollToAnchor />
+        <Outlet />
+      </>
+    ),
+    children: [
+      ...["/clubs/:club", "/clubs"].map((path) => ({
+        path,
+        Component: Clubs,
+      })),
+      ...["/bridges/:club", "/bridges"].map((path) => ({
+        path,
+        Component: Bridges,
+      })),
+      {
+        path: "*",
+        Component: Home,
+      },
+    ],
   },
 ]);
 
@@ -24,12 +40,10 @@ function App() {
   return (
     <Provider store={store}>
       <MarkerMobileProvider>
+        {false && <ScrollToAnchor />}
         <div className="App">
           <Header />
-          <div className="floating-panels">
-            <WaterLevel />
-            <WeatherPanel />
-          </div>
+          <div id="floating" />
           <div id="mobile-sidebar" />
           <main id="map">
             <RouterProvider router={HashRouter} />

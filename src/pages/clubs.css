@@ -1,0 +1,123 @@
+html {
+  --header-height: 164px;
+}
+
+#clubs {
+  nav {
+    padding: 1em;
+    position: sticky;
+    z-index: 1;
+    top: var(--header-height);
+    text-align: center;
+
+    ul {
+      display: flex;
+      justify-content: center;
+      gap: 1em;
+      list-style: none;
+      padding: 0;
+    }
+
+    a {
+      color: var(--color-text-white);
+      text-decoration: none;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    nav {
+      display: none;
+    }
+  }
+}
+
+.page article.club {
+  box-shadow: 0 0 1px rgb(0 0 0 / 15%);
+
+  .content {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    padding: 0;
+    gap: 0;
+  }
+
+  .club-header {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 1em;
+    margin-bottom: 1em;
+
+    .club-logo {
+      height: 100px;
+      width: 100px;
+      overflow: hidden;
+      position: relative;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+
+    h2 {
+      padding: 0;
+    }
+  }
+
+  .description {
+    padding: 1rem;
+  }
+
+  ul {
+    padding: 0.5em 0 0.5em 1.25em;
+    margin-bottom: 1em;
+  }
+
+  li::marker {
+    color: var(--color-text-lightblue);
+  }
+
+  .thumbnail {
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    padding: 0.5em;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  /*
+  &:nth-child(odd),
+  &:nth-child(even) {
+    .content {
+      grid-template-columns: 1fr 2fr;
+    }
+
+    .thumbnail {
+      order: 2;
+    }
+  } */
+
+  @media screen and (max-width: 768px) {
+    .content {
+      grid-template-columns: 1fr;
+    }
+
+    .thumbnail {
+      padding: 0;
+    }
+
+    .description {
+      padding: 1rem 2rem;
+    }
+
+    & {
+      margin-bottom: 3em;
+    }
+  }
+}

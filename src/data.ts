@@ -22,67 +22,110 @@ export const points: [number, number][] = [
 type TClubData = {
   coords: LatLngLiteral;
   logo?: string;
+  thumbnail?: string;
   name?: string;
   site?: string;
   description?: string;
+  content?: string;
+  activities?: string[];
 };
 
 export const clubs: Record<string, TClubData> = {
   esperia: {
     coords: { lat: 45.06187124175834, lng: 7.696283791727894 },
     logo: "./imgs/esperia.webp",
+    thumbnail: "./imgs/esperia-facede.jpeg",
     name: "Esperia",
-    site: "https://www.esperiatorino.it/",
+    site: "https://www.esperia-torino.it/",
     description: "Società Canottieri Esperia",
+    content:
+      "<p>La Società Canottieri Esperia - Torino è una associazione sportiva torinese di canottaggio. La società fu fondata nel 1886 e la sua sede dal 1929 si trova sulla riva orientale del Po in Corso Moncalieri 2, all'altezza della Chiesa della Gran Madre di Dio.</p>",
+    activities: ["Canottaggio"],
   },
   amici: {
     coords: { lat: 45.05932490162514, lng: 7.693730645137854 },
     logo: "./imgs/amici.png",
+    thumbnail: "./imgs/amici-facede.jpeg",
     name: "Amici del Fiume",
     site: "https://www.amicidelfiume.it/",
     description: "Circolo Amici del Fiume ASD",
+    content:
+      "<p>Il Circolo Amici del Fiume è un'associazione sportiva dilettantistica che si occupa di canottaggio, canoa e dragon boat. La sede è situata in Corso Moncalieri 2, a Torino, all'interno della Società Canottieri Esperia. </p>",
+    activities: [
+      "Canottaggio",
+      "Canoa",
+      "Dragon Boat",
+      "Kayak",
+      "Tennis",
+      "Beach Volley",
+      "Yoga",
+    ],
   },
   caprera: {
     coords: { lat: 45.058402783829365, lng: 7.693008707475018 },
     logo: "./imgs/caprera.webp",
+    thumbnail: "./imgs/caprera-facede.jpeg",
     name: "Caprera",
     site: "https://www.canottiericaprera.it/",
     description: "Canottieri Caprera",
+    content:
+      "<p>La Società Canottieri Caprera è una società di canottaggio fondata nel 1883 a Torino.</p>",
+    activities: ["Canottaggio", "Tennis"],
   },
   canoa: {
     coords: { lat: 45.05633729245881, lng: 7.689865708163326 },
     logo: "./imgs/canoa.webp",
+    thumbnail: "./imgs/canoa-facede.jpeg",
     name: "Canoa Club",
     site: "https://www.canoaclubtorino.it/",
     description: "Canoa Club Torino",
+    content:
+      "<p>Abbiamo in comune la passione per la canoa, la propensione all'aperitivo e una gran voglia di divertirci in mezzo alla natura.</p><p>Dai torrenti di montagna, dai laghi alpini e dalle onde marine, troviamo anche a Torino il nostro angolo di pace acquatica.</p>",
+    activities: ["Canoa", "Paddle", "Kayak"],
   },
   armida: {
     coords: { lat: 45.054942575648965, lng: 7.688348444144571 },
     logo: "./imgs/armida.png",
+    thumbnail: "./imgs/armida-facede.jpeg",
     name: "Armida",
     site: "https://www.canottieriarmida.it/",
     description: "Società Canottieri Armida",
+    content:
+      "<p>Da oltre 150 anni la Società Armida è un punto di riferimento per il canottaggio torinese e italiano, offrendo corsi per adulti e ragazzi, attività agonistiche, pararowing e iniziative sociali</p>",
+    activities: ["Canottaggio"],
   },
   cerea: {
     coords: { lat: 45.05338264732368, lng: 7.68730703601933 },
     logo: "./imgs/cerea.png",
+    thumbnail: "./imgs/cerea-facede.jpeg",
     name: "Cerea",
     site: "https://www.canottiericerea.it/",
     description: "Reale Società Canottieri Cerea",
+    content:
+      "<p>La Cerea è, dopo la Canottieri Limite, il più antico club remiero in Italia, ma il più longevo svolgendo ininterrottamente dal 1863 attività sportiva e ricreativa. Il ricchissimo archivio sociale contiene documenti e corrispondenza che consentono di ricostruire la vita e le attività del club, ma anche la crescita organizzativa del canottaggio italiano.</p>",
+    activities: ["Canottaggio"],
   },
   eridano: {
     coords: { lat: 45.05189815668324, lng: 7.687856822386068 },
     logo: "./imgs/eridano.png",
+    thumbnail: "./imgs/eridano-facede.jpeg",
     name: "Eridano",
     site: "https://www.circoloeridano.it/",
     description: "Circolo Eridano",
+    content:
+      "<p>È un'associazione sportivo - culturale, non a scopo di lucro, dotata di campi da tennis, un imbarcadero per attività di canoa e canottaggio e un Bar/Ristorante per soci.</p>",
+    activities: ["Canottaggio", "Canoa", "Kayak"],
   },
   cus: {
     coords: { lat: 45.03884989422468, lng: 7.677882189193597 },
     logo: "./imgs/cus.jpeg",
+    thumbnail: "./imgs/cus-facede.jpeg",
     name: "CUS",
     site: "https://www.custorino.it/",
     description: "Centro Universitario Sportivo",
+    content:
+      "<p>A Torino esiste un centro polisportivo in cui praticare tantissimi sport e il canottaggio è uno di questi. Andare in canoa sul Po, per passione, per provare la prima volta o perchè lo si è scelto come sport da diverso tempo. Qualunque sia il motivo il CUS Torino offre le sua strutture in Corso Sicilia 50.</p>",
+    activities: ["Canottaggio", "Canoa", "Paddle", "Kayak"],
   },
 };
 

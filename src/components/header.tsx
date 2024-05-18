@@ -11,15 +11,15 @@ export function Header() {
           <h1>Fiume Po</h1>
         </a>
         <nav>
-          <a href="#metrology">
+          <a href="/#metrology">
             <CloudSun strokeWidth={1} size={18} />
             <span className="desktop-only">Metrica</span>
           </a>
-          <a href="#rules">
+          <a href="/#rules">
             <BookMarked strokeWidth={1} size={18} />
             <span className="desktop-only">Regole</span>
           </a>
-          <a href="#map">
+          <a href="/#map">
             <MapPinned strokeWidth={1} size={18} />
             <span className="desktop-only">Mappa</span>
           </a>

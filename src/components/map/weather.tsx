@@ -6,8 +6,6 @@ import { weatherSearchParams, weatherSite } from "../../store/weather/statics";
 export function WeatherPanel() {
   const { weatherData, error, loading } = useWeather();
 
-  console.log("weatherData", { weatherData, error, loading });
-
   const { data, units } = weatherData || {};
 
   const title = useMemo(() => {
