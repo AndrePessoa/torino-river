@@ -10,47 +10,40 @@ import "./App.css";
 import ScrollToAnchor from "./components/link-anchor";
 import { Bridges } from "./pages/bridges";
 
-const HashRouter = createHashRouter(
-  [
-    {
-      path: "/",
-      element: (
-        <>
-          <ScrollToAnchor />
+const HashRouter = createHashRouter([
+  {
+    path: "/",
+    element: (
+      <>
+        <ScrollToAnchor />
 
-          <div className="App">
-            <Header />
-            <div id="floating" />
-            <div id="mobile-sidebar" />
-            <main id="map">
-              <Outlet />
-            </main>
-            <Footer />
-          </div>
-        </>
-      ),
-      children: [
-        ...["/clubs/:club", "/clubs"].map((path) => ({
-          path,
-          Component: Clubs,
-        })),
-        ...["/bridges/:club", "/bridges"].map((path) => ({
-          path,
-          Component: Bridges,
-        })),
-        ...["/", "*"].map((path) => ({
-          path,
-          Component: Home,
-        })),
-      ],
-    },
-  ],
-  process.env.PUBLIC_URL
-    ? {
-        basename: process.env.PUBLIC_URL,
-      }
-    : {}
-);
+        <div className="App">
+          <Header />
+          <div id="floating" />
+          <div id="mobile-sidebar" />
+          <main id="map">
+            <Outlet />
+          </main>
+          <Footer />
+        </div>
+      </>
+    ),
+    children: [
+      ...["/clubs/:club", "/clubs"].map((path) => ({
+        path,
+        Component: Clubs,
+      })),
+      ...["/bridges/:club", "/bridges"].map((path) => ({
+        path,
+        Component: Bridges,
+      })),
+      ...["/", "/*"].map((path) => ({
+        path,
+        Component: Home,
+      })),
+    ],
+  },
+]);
 
 function App() {
   return (

@@ -2,6 +2,7 @@
   "name": "torino-river",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://andrepessoa.github.io/torino-river",
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.5",
     "chart.js": "^4.4.2",
