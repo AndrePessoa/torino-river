@@ -1,4 +1,4 @@
-import { MoveDown, Sun, CloudDrizzle, Cloud, CloudSun } from "lucide-react";
+import { MoveDown, Sun, CloudRain, Cloud, CloudSun } from "lucide-react";
 import { IWeatherData } from "../../store/weather/types";
 import "./meteo-card.css";
 
@@ -19,7 +19,7 @@ function WeatherIcon({
   if (rain > 0) {
     return (
       <div className="weather-icon rainy">
-        <CloudDrizzle size={ICON_SIZE} strokeWidth={ICON_LINE} />
+        <CloudRain size={ICON_SIZE} strokeWidth={ICON_LINE} />
       </div>
     );
   }

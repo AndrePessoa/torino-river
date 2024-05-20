@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
+import { pushHistory } from "../store/history/actions";
 
 function pathToId(path: string | undefined): string {
   if (!path) {
@@ -17,6 +18,8 @@ function ScrollToAnchor(): null {
   useEffect(() => {
     if (location.pathname) {
       lastHash.current = pathToId(location.pathname);
+
+      pushHistory(location.pathname);
     }
 
     const id = lastHash.current.length > 0 ? lastHash.current : "";

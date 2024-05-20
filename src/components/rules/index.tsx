@@ -2,7 +2,7 @@ import "./index.css";
 
 export function Rules() {
   return (
-    <section className="rules" id="rules">
+    <section className="rules" id="home-rules">
       <div className="content">
         <div>
           <h2>PER LA NAVIGAZIONE A REMI SUL FIUME PO</h2>

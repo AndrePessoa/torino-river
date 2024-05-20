@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import { OctagonX, TriangleAlert } from "lucide-react";
 import { waterLevelSensors } from "../../data";
 import { useWeather } from "../../store/weather/hook";
 import { useWaterLevel } from "../../store/water/hooks";
@@ -20,18 +21,21 @@ function useWaterLevelsData() {
   const waterDataset = useMemo(() => {
     return [
       {
+        id: waterLevelSensors.CARIGNANO.key,
         label: waterLevelSensors.CARIGNANO.label,
         data: carignanoData.waterLevel?.map(([_, { value }]) => value) || [],
         borderColor: "#db8223",
         backgroundColor: "rgba(219, 130, 35, .5)",
       },
       {
+        id: waterLevelSensors.MONCALIERI.key,
         label: waterLevelSensors.MONCALIERI.label,
         data: moncalieriData.waterLevel?.map(([_, { value }]) => value) || [],
         borderColor: "#4dbe6dff",
         backgroundColor: "rgba(77, 190, 109, .5)",
       },
       {
+        id: waterLevelSensors.MURAZZI.key,
         label: waterLevelSensors.MURAZZI.label,
         data: murazziData.waterLevel?.map(([_, { value }]) => value) || [],
         borderColor: "#66a2c9ff",
@@ -54,6 +58,27 @@ type TCurrentWaterLevelProps = {
   labels: TLabels | undefined;
 };
 
+function CurrentWaterLevelsIcon({ id, value }: { id: string; value: number }) {
+  const dataSensor = waterLevelSensors[id];
+
+  if (!dataSensor) return null;
+  if (value > dataSensor.dangerAlert)
+    return (
+      <span className="level-alert danger">
+        <OctagonX size={15} /> Livello pericoloso
+      </span>
+    );
+
+  if (value > dataSensor.warningAlert)
+    return (
+      <span className="level-alert warning">
+        <TriangleAlert size={15} /> Livello di guardia
+      </span>
+    );
+
+  return null;
+}
+
 function CurrentWaterLevels({ data, labels }: TCurrentWaterLevelProps) {
   if (!data?.length || !labels?.length) return null;
 
@@ -62,8 +87,14 @@ function CurrentWaterLevels({ data, labels }: TCurrentWaterLevelProps) {
       <div className="metrics">
         {data.map((dataset) => (
           <div key={dataset.label} className="metric">
-            <strong>{dataset.label}</strong>:{" "}
-            <span>{dataset.data.at(-1)}m</span>
+            <span>
+              <strong>{dataset.label}</strong>:{" "}
+              <span>{dataset.data.at(-1)}m</span>
+            </span>
+            <CurrentWaterLevelsIcon
+              id={dataset.id}
+              value={dataset.data.at(-1) || 0}
+            />
           </div>
         ))}
         <div className="legend">
@@ -150,7 +181,7 @@ function Meteology() {
 
 export function Metrology() {
   return (
-    <section className="metrology" id="metrology">
+    <section className="metrology" id="home-metrology">
       <div className="content">
         <h2>METEO E IDROMETRI</h2>
         <Hidrometry />

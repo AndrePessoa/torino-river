@@ -176,18 +176,35 @@ export const bridges: Record<string, TBridgeData> = {
   },
 };
 
-export const waterLevelSensors = {
+export type TWaterLevelData = {
+  id: string;
+  key: string;
+  label: string;
+  warningAlert: number;
+  dangerAlert: number;
+};
+
+export const waterLevelSensors: Record<string, TWaterLevelData> = {
   MONCALIERI: {
     id: "001156901",
+    key: "MONCALIERI",
     label: "Moncalieri",
+    warningAlert: 2.2,
+    dangerAlert: 2.35,
   },
   MURAZZI: {
     id: "001272703",
+    key: "MURAZZI",
     label: "Murazzi",
+    warningAlert: 1.35,
+    dangerAlert: 1.5,
   },
   CARIGNANO: {
     id: "001058900",
+    key: "CARIGNANO",
     label: "Carignano",
+    warningAlert: 2.1,
+    dangerAlert: 2.25,
   },
 };
 

@@ -46,6 +46,7 @@ export const options: ChartOptions<"line"> = {
 export type TLabels = string[];
 
 export type TDatasets = {
+  id: string;
   label: string;
   data: number[];
   borderColor: string;

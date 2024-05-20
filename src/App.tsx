@@ -16,7 +16,6 @@ const HashRouter = createHashRouter([
     element: (
       <>
         <ScrollToAnchor />
-
         <div className="App">
           <Header />
           <div id="floating" />
@@ -37,7 +36,7 @@ const HashRouter = createHashRouter([
         path,
         Component: Bridges,
       })),
-      ...["/", "/*"].map((path) => ({
+      ...["/", "/*", "/home", "/home/*"].map((path) => ({
         path,
         Component: Home,
       })),

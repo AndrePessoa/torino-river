@@ -6,6 +6,7 @@ import { SVGPaths } from "./svg-paths";
 import { Markers } from "./markers";
 import { points, positionInit } from "../../data";
 import { maxScale, maxWidth, minScale, minWidth } from "../../statics";
+import "./index.css";
 
 const scrollScale = window.innerWidth <= minWidth ? 10 : 5;
 const scrollPlaceholder = new Array(scrollScale).fill(0);
@@ -126,7 +127,7 @@ function Map({ children }: TMapProps) {
       {scrollPlaceholder.map((_, i) => (
         <section key={i} className="scaler" />
       ))}
-      <div className="map" id="map">
+      <div className="map" id="home-map">
         <MapContainer
           center={positionInit}
           zoom={getScale()}

@@ -1,0 +1,28 @@
+.links {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  background-color: white;
+
+  a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    padding: 1em;
+    width: 50vw;
+    background-color: var(--color-bg-blue);
+    color: var(--color-text-white);
+    text-decoration: none;
+    gap: 0.5em;
+
+    &:hover {
+      background-color: var(--color-bg-darkblue);
+    }
+
+    &:first-child {
+      text-align: right;
+    }
+  }
+}

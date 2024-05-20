@@ -4,3 +4,10 @@ export const DEFfAULT_FETCHER_STATUS = {
 };
 
 export const DEFAULT_KEY = "default";
+
+export const homeSubPages = [
+  "/",
+  "/home/metrology",
+  "/home/rules",
+  "/home/map",
+];
