@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { bridgeIcon } from "./bridge-icon";
 import Marker from "./marker";
 import { bridges } from "../../data";
@@ -15,9 +16,9 @@ function BridgeMarker({ id }: TBridgeMarker) {
         <div className="description">
           <div className="name">{name}</div>
           <div>{description}</div>
-          <a className="button" href={`#/bridges/${id}`}>
+          <Link className="button" to={`/bridges/${id}`}>
             Scopri di più
-          </a>
+          </Link>
         </div>
         <img src={schema} alt="" className="photo" />
         <img src={photo} alt="" className="photo" />

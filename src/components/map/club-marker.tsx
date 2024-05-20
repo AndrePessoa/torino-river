@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { clubIcon } from "./club-icon";
 import { OarArmida } from "./oar/armida";
 import { OarCerea } from "./oar/cerea";
@@ -49,9 +50,9 @@ function ClubMarker({ id }: TClubMarker) {
         <div className="description">
           <div className="name">{name}</div>
           <div className="description">{description}</div>
-          <a className="button" href={`#/clubs/${id}`}>
+          <Link className="button" to={`/clubs/${id}`}>
             Scopri di più
-          </a>
+          </Link>
         </div>
       </div>
     </Marker>

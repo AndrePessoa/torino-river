@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { bridges } from "../data";
 import "./bridges.css";
 
@@ -11,7 +12,7 @@ export function Bridges() {
             <ul>
               {Object.entries(bridges).map(([key, bridge]) => (
                 <li key={key}>
-                  <a href={`#bridges/${key}`}>{bridge.name}</a>
+                  <Link to={`/bridges/${key}`}>{bridge.name}</Link>
                 </li>
               ))}
             </ul>

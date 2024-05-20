@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { clubs } from "../data";
 import "./clubs.css";
 
@@ -11,7 +12,7 @@ export function Clubs() {
             <ul>
               {Object.entries(clubs).map(([key, club]) => (
                 <li key={key}>
-                  <a href={`#clubs/${key}`}>{club.name}</a>
+                  <Link to={`/clubs/${key}`}>{club.name}</Link>
                 </li>
               ))}
             </ul>

@@ -17,7 +17,16 @@ const HashRouter = createHashRouter(
       element: (
         <>
           <ScrollToAnchor />
-          <Outlet />
+
+          <div className="App">
+            <Header />
+            <div id="floating" />
+            <div id="mobile-sidebar" />
+            <main id="map">
+              <Outlet />
+            </main>
+            <Footer />
+          </div>
         </>
       ),
       children: [
@@ -29,32 +38,25 @@ const HashRouter = createHashRouter(
           path,
           Component: Bridges,
         })),
-        {
-          path: "*",
+        ...["/", "*"].map((path) => ({
+          path,
           Component: Home,
-        },
+        })),
       ],
     },
   ],
-  {
-    basename: process.env.PUBLIC_URL,
-  }
+  process.env.PUBLIC_URL
+    ? {
+        basename: process.env.PUBLIC_URL,
+      }
+    : {}
 );
 
 function App() {
   return (
     <Provider store={store}>
       <MarkerMobileProvider>
-        {false && <ScrollToAnchor />}
-        <div className="App">
-          <Header />
-          <div id="floating" />
-          <div id="mobile-sidebar" />
-          <main id="map">
-            <RouterProvider router={HashRouter} />
-          </main>
-          <Footer />
-        </div>
+        <RouterProvider router={HashRouter} />
       </MarkerMobileProvider>
     </Provider>
   );
