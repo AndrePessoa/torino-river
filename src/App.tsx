@@ -10,31 +10,36 @@ import "./App.css";
 import ScrollToAnchor from "./components/link-anchor";
 import { Bridges } from "./pages/bridges";
 
-const HashRouter = createHashRouter([
+const HashRouter = createHashRouter(
+  [
+    {
+      path: "/",
+      element: (
+        <>
+          <ScrollToAnchor />
+          <Outlet />
+        </>
+      ),
+      children: [
+        ...["/clubs/:club", "/clubs"].map((path) => ({
+          path,
+          Component: Clubs,
+        })),
+        ...["/bridges/:club", "/bridges"].map((path) => ({
+          path,
+          Component: Bridges,
+        })),
+        {
+          path: "*",
+          Component: Home,
+        },
+      ],
+    },
+  ],
   {
-    path: "/",
-    element: (
-      <>
-        <ScrollToAnchor />
-        <Outlet />
-      </>
-    ),
-    children: [
-      ...["/clubs/:club", "/clubs"].map((path) => ({
-        path,
-        Component: Clubs,
-      })),
-      ...["/bridges/:club", "/bridges"].map((path) => ({
-        path,
-        Component: Bridges,
-      })),
-      {
-        path: "*",
-        Component: Home,
-      },
-    ],
-  },
-]);
+    basename: process.env.PUBLIC_URL,
+  }
+);
 
 function App() {
   return (
