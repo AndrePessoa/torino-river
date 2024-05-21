@@ -7,14 +7,15 @@ export function Header() {
   const location = useLocation();
   const titleTarget = useBackToPage(location.pathname);
 
-  console.log("Header render", titleTarget);
-
   return (
     <header>
       <div className="content">
         <Link to={titleTarget}>
-          <img src="./imgs/mini-logo.svg" height={60} alt="Project logo" />
-
+          <img
+            src={`${process.env.PUBLIC_URL}/imgs/mini-logo.svg`}
+            height={60}
+            alt="Project logo"
+          />
           <h1>Fiume Po</h1>
         </Link>
         <nav>

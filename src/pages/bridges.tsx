@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
-import { bridges } from "../data";
+import { useBridges } from "../store/content/hooks";
 import "./bridges.css";
 
 export function Bridges() {
+  const { data: bridges } = useBridges();
+
   return (
     <section className="page" id="bridges">
       <article className="title">
@@ -23,7 +25,10 @@ export function Bridges() {
         <article className="bridge" key={bridge.name} id={`bridges-${key}`}>
           <div className="content">
             <div className="thumbnail">
-              <img src={bridge.schema} alt="" />
+              <img
+                src={`${process.env.PUBLIC_URL}/imgs/${bridge.schema}`}
+                alt=""
+              />
             </div>
             <div className="description">
               <div className="bridge-header">
@@ -36,7 +41,7 @@ export function Bridges() {
               />
             </div>
             <div className="thumbnail">
-              <img src={bridge.photo} alt={bridge.name} />
+              <img src={`${bridge.photo}`} alt={bridge.name} />
             </div>
           </div>
         </article>

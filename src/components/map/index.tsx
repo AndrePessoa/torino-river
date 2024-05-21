@@ -124,10 +124,11 @@ function Map({ children }: TMapProps) {
 
   return (
     <>
+      <div id="home-map" />
       {scrollPlaceholder.map((_, i) => (
         <section key={i} className="scaler" />
       ))}
-      <div className="map" id="home-map">
+      <div className="map">
         <MapContainer
           center={positionInit}
           zoom={getScale()}

@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
-import { clubs } from "../data";
+import { useClubs } from "../store/content/hooks";
 import "./clubs.css";
 
 export function Clubs() {
+  const { data: clubs } = useClubs();
+
   return (
     <section className="page" id="clubs">
       <article className="title">
@@ -23,12 +25,18 @@ export function Clubs() {
         <article className="club" key={club.name} id={`clubs-${key}`}>
           <div className="content">
             <div className="thumbnail">
-              <img src={club.thumbnail} alt={club.name} />
+              <img
+                src={`${process.env.PUBLIC_URL}/imgs/${club.thumbnail}`}
+                alt={club.name}
+              />
             </div>
             <div className="description">
               <div className="club-header">
                 <div className="club-logo">
-                  <img src={club.logo} alt={club.name} />
+                  <img
+                    src={`${process.env.PUBLIC_URL}/imgs/${club.logo}`}
+                    alt={club.name}
+                  />
                 </div>
                 <div className="club-titles">
                   <h2>{club.name}</h2>
@@ -43,10 +51,11 @@ export function Clubs() {
                   ))}
                 </ul>
               )}
-
-              <a className="button" href={club.site}>
-                Scopri di più
-              </a>
+              {club.site && (
+                <a className="button" href={club.site}>
+                  Scopri di più
+                </a>
+              )}
             </div>
           </div>
         </article>

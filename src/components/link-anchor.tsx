@@ -24,19 +24,22 @@ function ScrollToAnchor(): null {
 
     const id = lastHash.current.length > 0 ? lastHash.current : "";
 
-    if (id && document.getElementById(id) != null) {
-      setTimeout(() => {
-        const element = document.getElementById(lastHash.current);
-        if (element) {
-          const elementPosition =
-            element.getBoundingClientRect().top + window.scrollY;
-          window.scrollTo({
-            top: elementPosition - navbarHeight,
-            behavior: "smooth",
-          });
-        }
-      }, 100);
-    }
+    console.log("scrolling to", id);
+
+    setTimeout(() => {
+      const element = document.getElementById(lastHash.current);
+      let scrollTarget = 0;
+
+      if (element) {
+        scrollTarget =
+          element.getBoundingClientRect().top + window.scrollY - navbarHeight;
+      }
+
+      window.scrollTo({
+        top: scrollTarget,
+        behavior: "smooth",
+      });
+    }, 100);
   }, [location]);
 
   return null;

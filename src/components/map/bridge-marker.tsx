@@ -20,7 +20,11 @@ function BridgeMarker({ id }: TBridgeMarker) {
             Scopri di più
           </Link>
         </div>
-        <img src={schema} alt="" className="photo" />
+        <img
+          src={`${process.env.PUBLIC_URL}/imgs/${schema}`}
+          alt=""
+          className="photo"
+        />
         <img src={photo} alt="" className="photo" />
       </div>
     </Marker>

@@ -1,14 +1,16 @@
 import { Provider } from "react-redux";
 import { createHashRouter, RouterProvider, Outlet } from "react-router-dom";
+import { PrismicProvider } from "@prismicio/react";
+import { client } from "./data/prismic";
 import { Header } from "./components/header";
 import { MarkerMobileProvider } from "./components/map/marker";
+import ScrollToAnchor from "./components/link-anchor";
 import { Footer } from "./components/footer";
-import { store } from "./store";
 import { Home } from "./pages/home";
 import { Clubs } from "./pages/clubs";
-import "./App.css";
-import ScrollToAnchor from "./components/link-anchor";
 import { Bridges } from "./pages/bridges";
+import { store } from "./store";
+import "./App.css";
 
 const HashRouter = createHashRouter([
   {
@@ -46,11 +48,13 @@ const HashRouter = createHashRouter([
 
 function App() {
   return (
-    <Provider store={store}>
-      <MarkerMobileProvider>
-        <RouterProvider router={HashRouter} />
-      </MarkerMobileProvider>
-    </Provider>
+    <PrismicProvider client={client}>
+      <Provider store={store}>
+        <MarkerMobileProvider>
+          <RouterProvider router={HashRouter} />
+        </MarkerMobileProvider>
+      </Provider>
+    </PrismicProvider>
   );
 }
 

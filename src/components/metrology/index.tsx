@@ -158,7 +158,7 @@ function Meteology() {
           <h3>Meteo</h3>
           <div className="meteology-cards">
             {weatherData?.data.map((d) => (
-              <MeteologyCard data={d} />
+              <MeteologyCard data={d} key={d.date} />
             ))}
           </div>
           <div className="legend">

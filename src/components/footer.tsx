@@ -5,7 +5,11 @@ export function Footer() {
     <footer>
       <div className="content">
         <div>
-          <img src="./imgs/large-logo.svg" height={60} alt="Project logo" />
+          <img
+            src={`${process.env.PUBLIC_URL}/imgs/large-logo.svg`}
+            height={60}
+            alt="Project logo"
+          />
         </div>
         <div>
           <p>

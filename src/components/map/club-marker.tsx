@@ -42,7 +42,9 @@ function ClubMarker({ id }: TClubMarker) {
             href={site}
             target="_blank"
             rel="noreferrer"
-            style={{ backgroundImage: `url(${logo})` }}
+            style={{
+              backgroundImage: `url(${process.env.PUBLIC_URL}/imgs/${logo})`,
+            }}
           >
             Go to site
           </a>
