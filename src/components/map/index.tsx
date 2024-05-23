@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { MapContainer, SVGOverlay, TileLayer, useMap } from "react-leaflet";
 import { LatLngTuple } from "leaflet";
+import { useDistance } from "../../store/content/hooks";
+import { updateDistance } from "../../store/content/actions";
+import { maxScale, maxWidth, minScale, minWidth } from "../../statics";
+import { points, positionInit } from "../../data";
 import { SVGEffects } from "./svg-effects";
 import { SVGPaths } from "./svg-paths";
 import { Markers } from "./markers";
-import { points, positionInit } from "../../data";
-import { maxScale, maxWidth, minScale, minWidth } from "../../statics";
 import "./index.css";
 
 const scrollScale = window.innerWidth <= minWidth ? 10 : 5;
@@ -120,7 +122,7 @@ type TMapProps = {
 };
 
 function Map({ children }: TMapProps) {
-  const [distance, setDistance] = useState(0);
+  const distance = useDistance();
 
   return (
     <>
@@ -138,7 +140,7 @@ function Map({ children }: TMapProps) {
           scrollWheelZoom={false}
           zoomControl={false}
         >
-          <MapScrollControl onUpdate={setDistance}>
+          <MapScrollControl onUpdate={updateDistance}>
             {children?.(distance)}
           </MapScrollControl>
           <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />

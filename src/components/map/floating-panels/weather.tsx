@@ -1,7 +1,10 @@
 import { useMemo } from "react";
 import "./weather.css";
-import { useWeather } from "../../store/weather/hook";
-import { weatherSearchParams, weatherSite } from "../../store/weather/statics";
+import { useWeather } from "../../../store/weather/hook";
+import {
+  weatherSearchParams,
+  weatherSite,
+} from "../../../store/weather/statics";
 
 export function WeatherPanel() {
   const { weatherData, error, loading } = useWeather();

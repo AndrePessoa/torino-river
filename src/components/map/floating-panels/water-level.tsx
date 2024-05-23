@@ -1,7 +1,8 @@
 import { useMemo } from "react";
 import "./water-level.css";
-import { waterLevelSensors } from "../../data";
-import { useWaterLevel } from "../../store/water/hooks";
+import { waterLevelSensors } from "../../../data";
+import { useWaterLevel } from "../../../store/water/hooks";
+import { sensorOriginalURL } from "../../../store/water/statics";
 
 export function WaterLevel({ sensorId = waterLevelSensors.CARIGNANO.id }) {
   const { waterLevel, unit, error, loading } = useWaterLevel(sensorId);
@@ -23,7 +24,7 @@ export function WaterLevel({ sensorId = waterLevelSensors.CARIGNANO.id }) {
     <a
       className="floating-panel water-level"
       title={title}
-      href={`https://www.arpa.piemonte.it/rischi_naturali/snippets_arpa_graphs/dettaglio_stazione/?id=${sensorId}&param=idro`}
+      href={sensorOriginalURL(sensorId)}
       target="_blank"
       rel="noreferrer"
     >

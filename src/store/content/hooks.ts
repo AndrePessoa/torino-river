@@ -1,13 +1,9 @@
+import { useSelector } from "react-redux";
 import { asHTML } from "@prismicio/client";
 import { useAllPrismicDocumentsByType } from "@prismicio/react";
-import {
-  TClubsData,
-  clubs,
-  bridges,
-  TBridgeData,
-  TBridgesData,
-} from "../../data";
+import { TClubsData, clubs, bridges, TBridgesData } from "../../data";
 import { useMemo } from "react";
+import { distanceSelector } from "./selectors";
 
 export function useClubs() {
   const [clubDocs, { state }] = useAllPrismicDocumentsByType("club");
@@ -78,4 +74,10 @@ export function useBridges() {
     loading: state === "loading",
     error: state === "failed",
   };
+}
+
+export function useDistance() {
+  const distance = useSelector(distanceSelector);
+
+  return distance;
 }

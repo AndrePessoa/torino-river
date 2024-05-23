@@ -80,7 +80,7 @@ section.scaler {
       gap: 1em;
     }
 
-    &:hover {
+    &:is(a):hover {
       background-color: rgb(224, 208, 250);
       outline: 1px solid var(--color-bg-blue);
     }
@@ -94,5 +94,11 @@ section.scaler {
       bottom: 5px;
       gap: 0.5em;
     }
+  }
+
+  .subpanel {
+    display: flex;
+    gap: 0.5em;
+    flex-direction: column;
   }
 }

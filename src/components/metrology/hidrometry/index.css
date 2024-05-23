@@ -1,0 +1,29 @@
+.filters {
+  display: flex;
+  margin-top: 0.5em;
+  margin-left: 1em;
+  nav-right: 1em;
+  gap: 0.5em;
+
+  .filter {
+    line-height: 1em;
+    font-size: 0.75em;
+    text-align: center;
+    cursor: pointer;
+    flex: 1;
+
+    padding: 0.75em;
+    background: rgb(255 255 255 / 15%);
+    border: 1px solid rgb(255 255 255/ 25%);
+
+    &.active {
+      background-color: white;
+    }
+
+    &:hover,
+    &.active:hover {
+      background-color: rgb(224, 208, 250);
+      border: 1px solid var(--color-bg-blue);
+    }
+  }
+}

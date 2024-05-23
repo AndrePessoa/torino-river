@@ -11,3 +11,5 @@ export const homeSubPages = [
   "/home/rules",
   "/home/map",
 ];
+
+export const totalDistance = 7450;

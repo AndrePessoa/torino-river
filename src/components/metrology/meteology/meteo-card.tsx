@@ -1,5 +1,5 @@
 import { MoveDown, Sun, CloudRain, Cloud, CloudSun } from "lucide-react";
-import { IWeatherData } from "../../store/weather/types";
+import { IWeatherData } from "../../../store/weather/types";
 import "./meteo-card.css";
 
 type TMeteologyCardProps = {

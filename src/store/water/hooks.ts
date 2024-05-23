@@ -1,21 +1,65 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useSelector } from "react-redux";
-import { sensorURL, proxyURL } from "./statics";
-import { waterDataSelector, waterFetchStatusSelector } from "./selector";
+import { waterLevelSensors } from "../../data";
 import { DEFAULT_KEY } from "../statics";
 import { AppState } from "..";
+import {
+  sensorURL,
+  proxyURL,
+  WaterLevelStatus,
+  IdroChartFilter,
+} from "./statics";
+import {
+  waterDataFilterSelector,
+  waterDataSelector,
+  waterFetchStatusSelector,
+} from "./selector";
 import { updateData, updateFetcherStatus } from "./actions";
 import { IdroData } from "./types";
 
-export const useWaterData = (key: string = DEFAULT_KEY) =>
-  useSelector((state: AppState) => waterDataSelector(state, key));
+export const useWaterDataFilter = () => {
+  return useSelector((state: AppState) => waterDataFilterSelector(state));
+};
+
+export const useWaterData = (key: string = DEFAULT_KEY) => {
+  const filter = useWaterDataFilter();
+  const loadedData = useSelector((state: AppState) =>
+    waterDataSelector(state, key)
+  );
+
+  const filteredData = useMemo(() => {
+    if (!loadedData) return undefined;
+
+    const { data, unit } = loadedData;
+    const _data = data?.filter(([time]) => {
+      const date = new Date(time);
+      const now = new Date();
+
+      switch (filter) {
+        case IdroChartFilter.LAST_24H:
+          return date >= new Date(now.getTime() - 24 * 60 * 60 * 1000);
+        case IdroChartFilter.LAST_3D:
+          return date >= new Date(now.getTime() - 3 * 24 * 60 * 60 * 1000);
+        default:
+          return true;
+      }
+    });
+
+    return {
+      data: _data,
+      unit,
+    };
+  }, [loadedData, filter]);
+
+  return filteredData;
+};
 
 export const useWaterFetcherStatus = (key: string = DEFAULT_KEY) =>
   useSelector((state: AppState) => waterFetchStatusSelector(state, key));
 
 export function useWaterLevel(sensorId: string) {
   const sensorUrl = sensorURL(sensorId);
-  const proxyUrl = proxyURL(sensorUrl);
+  const proxyUrl = proxyURL(`${sensorUrl}`);
 
   const waterData = useWaterData(sensorId);
   const { data, unit } = waterData || {};
@@ -39,7 +83,6 @@ export function useWaterLevel(sensorId: string) {
       })
       .then((data) => {
         const metric = data?.contents?.properties?.units_sym_html || {};
-
         const idro = (data?.contents?.properties?.idro || {}) as IdroData;
 
         // sort by date
@@ -75,4 +118,17 @@ export function useWaterLevel(sensorId: string) {
   }, [proxyUrl, sensorId, noCache]);
 
   return { waterLevel: data, unit, error, loading };
+}
+
+export function useWaterLevelAlert(sensorId: string) {
+  const { waterLevel } = useWaterLevel(sensorId);
+  const dataSensor = waterLevelSensors[sensorId];
+  if (!dataSensor || !waterLevel?.length) return WaterLevelStatus.UNKNOWN;
+
+  const [, value] = waterLevel.at(-1) || [];
+
+  if (value > dataSensor.dangerAlert) return WaterLevelStatus.DANGER;
+  if (value > dataSensor.warningAlert) return WaterLevelStatus.WARNING;
+
+  return WaterLevelStatus.GOOD;
 }
