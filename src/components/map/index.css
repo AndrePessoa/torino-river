@@ -84,6 +84,14 @@ section.scaler {
       background-color: rgb(224, 208, 250);
       outline: 1px solid var(--color-bg-blue);
     }
+
+    &.warning {
+      background-color: var(--color-bg-warning);
+    }
+
+    &.danger {
+      background-color: var(--color-bg-danger);
+    }
   }
 
   @media screen and (max-width: 768px) {

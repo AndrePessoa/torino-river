@@ -13,3 +13,6 @@ export const homeSubPages = [
 ];
 
 export const totalDistance = 7450;
+
+export const waterLevelSensorInterval = 1000 * 20 * 5;
+export const weatherSensorInterval = 1000 * 60 * 5;

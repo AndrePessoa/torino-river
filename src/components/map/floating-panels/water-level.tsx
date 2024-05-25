@@ -1,11 +1,27 @@
 import { useMemo } from "react";
 import "./water-level.css";
 import { waterLevelSensors } from "../../../data";
-import { useWaterLevel } from "../../../store/water/hooks";
-import { sensorOriginalURL } from "../../../store/water/statics";
+import { useWaterLevel, useWaterLevelAlert } from "../../../store/water/hooks";
+import {
+  WaterLevelStatus,
+  sensorOriginalURL,
+} from "../../../store/water/statics";
+
+function useStatusClassname(id: string) {
+  const dataSensorStatus = useWaterLevelAlert(id);
+
+  if (dataSensorStatus === WaterLevelStatus.UNKNOWN) {
+    return "";
+  }
+  if (dataSensorStatus === WaterLevelStatus.DANGER) return "danger";
+  if (dataSensorStatus === WaterLevelStatus.WARNING) return "warning";
+
+  return "";
+}
 
 export function WaterLevel({ sensorId = waterLevelSensors.CARIGNANO.id }) {
   const { waterLevel, unit, error, loading } = useWaterLevel(sensorId);
+  const status = useStatusClassname(sensorId);
   const [date, { value }] = waterLevel?.at(-1) || ["", {}];
 
   const title = useMemo(() => {
@@ -22,7 +38,7 @@ export function WaterLevel({ sensorId = waterLevelSensors.CARIGNANO.id }) {
 
   return (
     <a
-      className="floating-panel water-level"
+      className={`floating-panel weather-panel ${status}`}
       title={title}
       href={sensorOriginalURL(sensorId)}
       target="_blank"

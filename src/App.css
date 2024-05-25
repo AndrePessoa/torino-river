@@ -4,10 +4,13 @@
   --color-bg-blue: #4f4f84;
   --color-bg-darkblue: #282842;
   --color-bg-aquablue: #a4fbe9;
+  --color-bg-warning: #dce5b4;
+  --color-bg-danger: #ffacac;
   --color-text: #000;
   --color-text-white: white;
   --color-text-lightblue: #bfbfec;
   --color-text-blue: #9898c8;
+
   --header-height: 76px;
 }
 

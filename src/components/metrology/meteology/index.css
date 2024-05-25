@@ -44,11 +44,11 @@ section.metrology {
         font-weight: 700;
 
         &.warning {
-          background-color: #dce5b4;
+          background-color: var(--color-bg-warning);
         }
 
         &.danger {
-          background-color: #ffacac;
+          background-color: var(--color-bg-danger);
         }
       }
 

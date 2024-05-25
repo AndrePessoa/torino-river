@@ -1,7 +1,8 @@
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
+import { useSearchParams } from "react-router-dom";
 import { waterLevelSensors } from "../../data";
-import { DEFAULT_KEY } from "../statics";
+import { DEFAULT_KEY, waterLevelSensorInterval } from "../statics";
 import { AppState } from "..";
 import {
   sensorURL,
@@ -9,16 +10,14 @@ import {
   WaterLevelStatus,
   IdroChartFilter,
 } from "./statics";
-import {
-  waterDataFilterSelector,
-  waterDataSelector,
-  waterFetchStatusSelector,
-} from "./selector";
+import { waterDataSelector, waterFetchStatusSelector } from "./selector";
 import { updateData, updateFetcherStatus } from "./actions";
 import { IdroData } from "./types";
 
 export const useWaterDataFilter = () => {
-  return useSelector((state: AppState) => waterDataFilterSelector(state));
+  const [params] = useSearchParams();
+
+  return params.get("filter") || IdroChartFilter.ALL;
 };
 
 export const useWaterData = (key: string = DEFAULT_KEY) => {
@@ -59,7 +58,7 @@ export const useWaterFetcherStatus = (key: string = DEFAULT_KEY) =>
 
 export function useWaterLevel(sensorId: string) {
   const sensorUrl = sensorURL(sensorId);
-  const proxyUrl = proxyURL(`${sensorUrl}`);
+  const proxyUrl = proxyURL(sensorUrl);
 
   const waterData = useWaterData(sensorId);
   const { data, unit } = waterData || {};
@@ -74,7 +73,7 @@ export function useWaterLevel(sensorId: string) {
 
     updateFetcherStatus({
       key: sensorId,
-      status: { loading: noCache, error: null },
+      status: { loading: true, error: null },
     });
 
     fetch(proxyUrl, { signal })

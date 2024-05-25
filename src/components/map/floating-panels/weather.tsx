@@ -6,6 +6,16 @@ import {
   weatherSite,
 } from "../../../store/weather/statics";
 
+function getStatusClassname(rain: number) {
+  if (rain < 2) {
+    return "";
+  } else if (rain < 6) {
+    return "warning";
+  } else {
+    return "danger";
+  }
+}
+
 export function WeatherPanel() {
   const { weatherData, error, loading } = useWeather();
 
@@ -29,9 +39,11 @@ export function WeatherPanel() {
 
   const { rain, temperature, windDirection, windVelocity } = data.at(0) || {};
 
+  const status = getStatusClassname(rain || 0);
+
   return (
     <a
-      className="floating-panel weather-panel"
+      className={`floating-panel weather-panel ${status}`}
       title={title}
       href={`${weatherSite}${weatherSearchParams}`}
       target="_blank"

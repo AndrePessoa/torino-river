@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { OctagonX, TriangleAlert } from "lucide-react";
-import { changeFilter } from "../../../store/water/actions";
+import { useSearchParams } from "react-router-dom";
 import {
   useWaterDataFilter,
   useWaterLevel,
@@ -89,7 +89,12 @@ export function CurrentWaterLevelsIcon({ id }: { id: string }) {
 }
 
 export function WaterLevelFilter() {
+  const [searchParams, setSearchParams] = useSearchParams();
   const filter = useWaterDataFilter();
+
+  const changeFilter = (filter: IdroChartFilter) => {
+    setSearchParams({ ...searchParams, filter });
+  };
 
   return (
     <div className="filters">
@@ -125,22 +130,26 @@ function CurrentWaterLevels({ data, labels }: TCurrentWaterLevelProps) {
   return (
     <>
       <div className="metrics">
-        {data.map((dataset) => (
-          <a
-            title={dataset.label}
-            href={sensorOriginalURL(waterLevelSensors[dataset.id].id)}
-            target="_blank"
-            rel="noreferrer"
-            key={dataset.label}
-            className="metric"
-          >
-            <span>
-              <strong>{dataset.label}</strong>:{" "}
-              <span>{dataset.data.at(-1)}m</span>
-            </span>
-            <CurrentWaterLevelsIcon id={dataset.id} />
-          </a>
-        ))}
+        {data.map((dataset) => {
+          const sensorId = waterLevelSensors[dataset.id].id;
+
+          return (
+            <a
+              title={dataset.label}
+              href={sensorOriginalURL(sensorId)}
+              target="_blank"
+              rel="noreferrer"
+              key={dataset.label}
+              className="metric"
+            >
+              <span>
+                <strong>{dataset.label}</strong>:{" "}
+                <span>{dataset.data.at(-1)}m</span>
+              </span>
+              <CurrentWaterLevelsIcon id={sensorId} />
+            </a>
+          );
+        })}
         <div className="legend">
           <div>
             <small>
