@@ -16,6 +16,10 @@ function ScrollToAnchor(): null {
   const navbarHeight = 174;
 
   useEffect(() => {
+    const hasChange = lastHash.current !== pathToId(location.pathname);
+
+    if (!hasChange) return;
+
     if (location.pathname) {
       lastHash.current = pathToId(location.pathname);
 
@@ -24,7 +28,7 @@ function ScrollToAnchor(): null {
 
     const id = lastHash.current.length > 0 ? lastHash.current : "";
 
-    console.log("scrolling to", id);
+    console.log("scrolling to", id, location);
 
     setTimeout(() => {
       const element = document.getElementById(lastHash.current);

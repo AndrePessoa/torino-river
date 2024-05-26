@@ -44,6 +44,11 @@
     min-width: 250px;
   }
 
+  img {
+    border: 1px solid rgb(0 0 0 / 5%);
+    background: #eeeeee;
+  }
+
   .photo {
     display: block;
     background-size: contain;
