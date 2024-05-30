@@ -55,7 +55,10 @@ export function Rules() {
             </blockquote>
           </div>
           <div>
-            <img src="./imgs/sensi-di-marcha.svg" alt="" />
+            <img
+              src={`${process.env.PUBLIC_URL}/imgs/sensi-di-marcha.svg`}
+              alt=""
+            />
           </div>
         </div>
         <div>

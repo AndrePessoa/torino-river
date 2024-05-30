@@ -52,22 +52,24 @@ section.scaler {
 .floating-panels {
   position: fixed;
   z-index: 2;
-  left: 10px;
-  bottom: 10px;
-  right: 10px;
+  left: 20px;
+  bottom: 20px;
+  right: 20px;
   display: flex;
   align-items: end;
   justify-content: space-between;
   pointer-events: none;
 
   .floating-panel {
+    position: relative;
     display: flex;
     flex-direction: column;
     pointer-events: all;
 
     z-index: 2;
     background: white;
-    box-shadow: 0 1px 1px black;
+    box-shadow: 0 1px 1px rgb(0 0 0 / 75%), 0px 5px 5px 2px rgb(0 0 0 / 15%),
+      0px 10px 20px 5px rgb(0 0 0 / 15%);
     padding: 0.5em 0.75em;
     gap: 0.15em;
 

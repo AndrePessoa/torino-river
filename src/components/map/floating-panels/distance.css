@@ -1,0 +1,12 @@
+.distance_percent-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #d6d6d6;
+
+  & .distance_percent-bar {
+    height: 5px;
+    background-color: var(--color-bg-blue);
+  }
+}

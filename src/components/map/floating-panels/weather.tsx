@@ -50,28 +50,28 @@ export function WeatherPanel() {
       rel="noreferrer"
     >
       <div>
-        <span className="water-level__label">Rain</span>
+        <span className="water-level__label">Pioggia</span>
         <span className="water-level__values">
           <span className="water-level__value">{rain}</span>
           <span className="water-level__unit">{units.rain}</span>
         </span>
       </div>
       <div>
-        <span className="water-level__label">Temperature</span>
+        <span className="water-level__label">Temperatura</span>
         <span className="water-level__values">
           <span className="water-level__value">{temperature}</span>
           <span className="water-level__unit">{units.temperature_2m}</span>
         </span>
       </div>
       <div>
-        <span className="water-level__label">Wind direction</span>
+        <span className="water-level__label">Vento</span>
         <span className="water-level__values">
           <span className="water-level__value">{windDirection}</span>
           <span className="water-level__unit">{units.wind_direction_10m}</span>
         </span>
       </div>
       <div>
-        <span className="water-level__label">Wind velocity</span>
+        <span className="water-level__label"></span>
         <span className="water-level__values">
           <span className="water-level__value">{windVelocity}</span>
           <span className="water-level__unit">{units.wind_speed_10m}</span>

@@ -17,7 +17,6 @@ const HashRouter = createHashRouter([
     path: "/",
     element: (
       <>
-        {console.log("App")}
         <ScrollToAnchor />
         <div className="App">
           <Header />

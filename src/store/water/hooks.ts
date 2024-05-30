@@ -1,8 +1,8 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import { waterLevelSensors } from "../../data";
-import { DEFAULT_KEY, waterLevelSensorInterval } from "../statics";
+import { DEFAULT_KEY } from "../statics";
 import { AppState } from "..";
 import {
   sensorURL,

@@ -26,10 +26,6 @@ function ScrollToAnchor(): null {
       pushHistory(location.pathname);
     }
 
-    const id = lastHash.current.length > 0 ? lastHash.current : "";
-
-    console.log("scrolling to", id, location);
-
     setTimeout(() => {
       const element = document.getElementById(lastHash.current);
       let scrollTarget = 0;
