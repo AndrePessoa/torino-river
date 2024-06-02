@@ -103,6 +103,12 @@ h3 {
     gap: 1em;
   }
 
+  .col-2-1_2 {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 1em;
+  }
+
   blockquote {
     padding: 0.5em 0 0 1em;
     border-left: 5px solid;
@@ -119,7 +125,8 @@ h3 {
 
   @media screen and (max-width: 768px) {
     .col-2,
-    .col-2-2_1 {
+    .col-2-2_1,
+    .col-2-1_2 {
       display: flex;
       flex-direction: column;
     }

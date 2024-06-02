@@ -61,33 +61,42 @@ export function Rules() {
             />
           </div>
         </div>
+        <div className="col-2-1_2">
+          <div>
+            <img src={`${process.env.PUBLIC_URL}/imgs/allargare.svg`} alt="" />
+          </div>
+          <div>
+            <p>
+              Chi procede più lento deve lasciare spazio a chi va più veloce e
+              avvertire a gran voce della propria presenza. Si ricordi che in
+              gergo <strong>“andare a riva”</strong> significa accostare verso
+              l’argine della propria mano da tenere, mentre{" "}
+              <strong>“allargare”</strong> significa avvicinarsi al centro del
+              fiume.
+            </p>
+            <p>
+              Ogni ponte ha le sue particolari regole di direzione, ancora più
+              importanti in quanto le arcate ed i piloni impediscono una
+              completa visuale. In generale non bisogna maiinvertire la rotta se
+              non si è ad almeno cento metri da qualsiasi ponte.
+            </p>
+            <p>
+              Le regole precedenti sono frutto dell’esperienza e dell’accordo
+              tra le Società remiere di Torino, e valgono per tutte le
+              imbarcazioni da canottaggio. Le uniche occasioni in cui tali norme
+              perdono in parte validità sono le manifestazioni ufficiali (gare)
+              delle quali sono sempre avvisate tutte le Società.
+            </p>
+          </div>
+        </div>
         <div>
-          <p>
-            Chi procede più lento deve lasciare spazio a chi va più veloce e
-            avvertire a gran voce della propria presenza. Si ricordi che in
-            gergo <strong>“andare a riva”</strong> significa accostare verso
-            l’argine della propria mano da tenere, mentre{" "}
-            <strong>“allargare”</strong> significa avvicinarsi al centro del
-            fiume.
-          </p>
-          <p>
-            Ogni ponte ha le sue particolari regole di direzione, ancora più
-            importanti in quanto le arcate ed i piloni impediscono una completa
-            visuale. In generale non bisogna maiinvertire la rotta se non si è
-            ad almeno cento metri da qualsiasi ponte.
-          </p>
-          <p>
-            Le regole precedenti sono frutto dell’esperienza e dell’accordo tra
-            le Società remiere di Torino, e valgono per tutte le imbarcazioni da
-            canottaggio. Le uniche occasioni in cui tali norme perdono in parte
-            validità sono le manifestazioni ufficiali (gare) delle quali sono
-            sempre avvisate tutte le Società.
-          </p>
-          <p>
-            CHIUNQUE, NON RISPETTANDO LE REGOLE DI NAVIGAZIONE ELENCATE, E’
-            CAUSA DI DANNO A PERSONE O COSE, SI DOVRA’ ASSUMERE IN PIENO LA
-            RESPONSABILITA’ DELL’ACCADUTO.
-          </p>
+          <div>
+            <p>
+              CHIUNQUE, NON RISPETTANDO LE REGOLE DI NAVIGAZIONE ELENCATE, E’
+              CAUSA DI DANNO A PERSONE O COSE, SI DOVRA’ ASSUMERE IN PIENO LA
+              RESPONSABILITA’ DELL’ACCADUTO.
+            </p>
+          </div>
         </div>
       </div>
     </section>
