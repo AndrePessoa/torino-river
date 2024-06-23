@@ -1,6 +1,5 @@
 import { store } from "..";
 import waterSlice, { TFetchStatusPayload, TUpdatePayload } from "./reducer";
-import { IdroChartFilter } from "./statics";
 
 export const updateData = (payload: TUpdatePayload) =>
   store.dispatch(waterSlice.actions.updateData(payload));

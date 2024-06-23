@@ -2,13 +2,20 @@ import { MapPinned, BookMarked, CloudSun } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { useBackToPage } from "../store/history/hooks";
 import "./header.css";
+import { useIsConnected } from "../store/common/hook";
 
 export function Header() {
+  const isConnected = useIsConnected();
   const location = useLocation();
   const titleTarget = useBackToPage(location.pathname);
 
   return (
     <header>
+      {!isConnected && (
+        <div className="no-internet">
+          No internet connection - using cached data
+        </div>
+      )}
       <div className="content">
         <Link to={titleTarget}>
           <img

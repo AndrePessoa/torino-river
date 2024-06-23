@@ -1,5 +1,5 @@
-import { useEffect } from "react";
 import { useSelector } from "react-redux";
+import { useFetch } from "../common/hook";
 import { DEFAULT_KEY } from "../statics";
 import { AppState } from "..";
 import { weatherApi, weatherSearchParams } from "./statics";
@@ -18,68 +18,43 @@ export function useWeather(hours: number = 1) {
   const { error, loading } = useWeatherFetcherStatus(key);
   const noCache = !weatherData;
 
-  useEffect(() => {
-    const abortController = new AbortController();
-    const signal = abortController.signal;
+  useFetch<any>({
+    url: `${weatherApi}${weatherSearchParams}`,
+    onStatus: (status) => updateFetcherStatus({ key, status }),
+    onData: (data) => {
+      const dataResult = [];
+      const now = new Date();
 
-    updateFetcherStatus({
-      key,
-      status: { loading: noCache, error: null },
-    });
+      const timeIndex = data?.hourly.time.findIndex((t: any) => {
+        const date = new Date(t);
 
-    fetch(`${weatherApi}${weatherSearchParams}`, { signal })
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        const dataResult = [];
-        const now = new Date();
-
-        const timeIndex = data?.hourly.time.findIndex((t: any) => {
-          const date = new Date(t);
-
-          return date > now;
-        });
-
-        for (let i = 0; i < hours; i++) {
-          if (!data?.hourly?.time[timeIndex + i]) continue;
-
-          dataResult.push({
-            windDirection: data?.hourly.wind_direction_10m[timeIndex + i],
-            windVelocity: data?.hourly.wind_speed_10m[timeIndex + i],
-            rain: data?.hourly.rain[timeIndex + i],
-            temperature: data?.hourly.temperature_2m[timeIndex + i],
-            cloud_cover: data?.hourly.cloud_cover[timeIndex + i],
-            date: data?.hourly.time[timeIndex + i],
-          });
-        }
-
-        updateData({
-          key,
-          data: {
-            data: dataResult,
-            units: data?.hourly_units,
-          },
-        });
-
-        updateFetcherStatus({
-          key,
-          status: { loading: false, error: null },
-        });
-      })
-      .catch((error) => {
-        if (abortController.signal.aborted) return;
-
-        updateFetcherStatus({
-          key,
-          status: { loading: false, error },
-        });
+        return date > now;
       });
 
-    return () => {
-      abortController.abort("Unmounted weather component");
-    };
-  }, [key, hours, loading, noCache]);
+      for (let i = 0; i < hours; i++) {
+        if (!data?.hourly?.time[timeIndex + i]) continue;
+
+        dataResult.push({
+          windDirection: data?.hourly.wind_direction_10m[timeIndex + i],
+          windVelocity: data?.hourly.wind_speed_10m[timeIndex + i],
+          rain: data?.hourly.rain[timeIndex + i],
+          temperature: data?.hourly.temperature_2m[timeIndex + i],
+          cloud_cover: data?.hourly.cloud_cover[timeIndex + i],
+          date: data?.hourly.time[timeIndex + i],
+        });
+      }
+
+      updateData({
+        key,
+        data: {
+          data: dataResult,
+          units: data?.hourly_units,
+        },
+      });
+    },
+    errorMessage: "Unmounted weather component",
+    noCache,
+  });
 
   return { weatherData, error, loading };
 }

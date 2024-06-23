@@ -1,7 +1,8 @@
-import { useEffect, useMemo } from "react";
+import { useMemo } from "react";
 import { useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import { waterLevelSensors } from "../../data";
+import { useFetch } from "../common/hook";
 import { DEFAULT_KEY } from "../statics";
 import { AppState } from "..";
 import {
@@ -65,56 +66,29 @@ export function useWaterLevel(sensorId: string) {
   const { loading, error } = useWaterFetcherStatus(sensorId);
   const noCache = !waterData;
 
-  useEffect(() => {
-    const abortController = new AbortController();
-    const signal = abortController.signal;
+  useFetch<any>({
+    url: proxyUrl,
+    onStatus: (status) => updateFetcherStatus({ key: sensorId, status }),
+    onData: (data) => {
+      const metric = data?.contents?.properties?.units_sym_html || {};
+      const idro = (data?.contents?.properties?.idro || {}) as IdroData;
 
-    if (!noCache) return;
+      // sort by date
+      const sorted = Object.entries(idro).sort(
+        ([a], [b]) => new Date(a).getTime() - new Date(b).getTime()
+      );
 
-    updateFetcherStatus({
-      key: sensorId,
-      status: { loading: true, error: null },
-    });
-
-    fetch(proxyUrl, { signal })
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        const metric = data?.contents?.properties?.units_sym_html || {};
-        const idro = (data?.contents?.properties?.idro || {}) as IdroData;
-
-        // sort by date
-        const sorted = Object.entries(idro).sort(
-          ([a], [b]) => new Date(a).getTime() - new Date(b).getTime()
-        );
-
-        updateData({
-          key: sensorId,
-          data: {
-            data: sorted,
-            unit: metric,
-          },
-        });
-
-        updateFetcherStatus({
-          key: sensorId,
-          status: { loading: false, error: null },
-        });
-      })
-      .catch((error) => {
-        if (abortController.signal.aborted) return;
-
-        updateFetcherStatus({
-          key: sensorId,
-          status: { loading: false, error },
-        });
+      updateData({
+        data: {
+          data: sorted,
+          unit: metric,
+        },
+        key: sensorId,
       });
-
-    return () => {
-      abortController.abort("Unmounted water level component");
-    };
-  }, [proxyUrl, sensorId, noCache]);
+    },
+    errorMessage: "Unmounted water level component",
+    noCache,
+  });
 
   return { waterLevel: data, unit, error, loading };
 }

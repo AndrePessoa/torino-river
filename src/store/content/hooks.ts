@@ -1,16 +1,15 @@
 import { useSelector } from "react-redux";
 import { asHTML } from "@prismicio/client";
-import { useAllPrismicDocumentsByType } from "@prismicio/react";
-import { TClubsData, clubs, bridges, TBridgesData } from "../../data";
-import { useMemo } from "react";
+import { clubs, TClubsData, bridges, TBridgesData } from "../../data";
+import { useAllPrismicByType } from "../common/hook";
 import { distanceSelector } from "./selectors";
 
 export function useClubs() {
-  const [clubDocs, { state }] = useAllPrismicDocumentsByType("club");
+  return useAllPrismicByType("club", (docs) => {
+    console.log("docs", docs);
 
-  const clubsResult = useMemo(() => {
-    return Object.entries(clubs).reduce((acc, [key, club]) => {
-      const doc = clubDocs?.find((doc) => doc.uid === key);
+    return Object.entries(clubs || {}).reduce((acc, [key, club]) => {
+      const doc = docs?.find((doc) => doc.uid === key);
 
       const content = doc?.data.content
         ? asHTML(doc.data.content) || ""
@@ -35,22 +34,14 @@ export function useClubs() {
         },
       };
     }, {} as TClubsData);
-  }, [clubDocs]);
-
-  return {
-    data: clubsResult,
-    loading: state === "loading",
-    error: state === "failed",
-  };
+  });
 }
 
 export function useBridges() {
-  const [bridgeDoc, { state }] = useAllPrismicDocumentsByType("bridge");
-
-  const bridgesResult = useMemo(() => {
+  return useAllPrismicByType("bridge", (docs) => {
     // merge the data from the data file with the data from the API
-    return Object.entries(bridges).reduce((acc, [key, bridge]) => {
-      const doc = bridgeDoc?.find((doc) => doc.uid === key);
+    return Object.entries(bridges || {}).reduce((acc, [key, bridge]) => {
+      const doc = docs?.find((doc) => doc.uid === key);
 
       const content = doc?.data.description
         ? asHTML(doc.data.description) || ""
@@ -67,13 +58,7 @@ export function useBridges() {
         },
       };
     }, {} as TBridgesData);
-  }, [bridgeDoc]);
-
-  return {
-    data: bridgesResult,
-    loading: state === "loading",
-    error: state === "failed",
-  };
+  });
 }
 
 export function useDistance() {

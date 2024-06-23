@@ -1,10 +1,9 @@
 header {
-  font-family: "Poiret One", sans-serif;
   position: fixed;
   display: flex;
   align-items: center;
-  padding: 0.5em 2em 0.5em 1em;
-  gap: 1.5em;
+  flex-direction: column;
+  font-family: "Poiret One", sans-serif;
   background: rgb(255, 255, 255);
   top: 0;
   left: 0;
@@ -16,6 +15,18 @@ header {
     width: 100%;
     max-width: 1280px;
     margin: auto;
+    padding: 0.5em 2em 0.5em 1em;
+  }
+
+  .no-internet {
+    position: relative;
+    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-weight: bolder;
+    background-color: orange;
+    text-align: center;
   }
 
   & a {
