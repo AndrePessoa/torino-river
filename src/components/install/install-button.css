@@ -1,0 +1,15 @@
+.install-button {
+  display: inline-flex;
+  gap: 0.5em;
+  background-color: var(--color-bg-aquablue);
+  color: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  padding: 0.75em 1em;
+  border-radius: 0.5em;
+  margin-top: 2em;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.75);
+  }
+}

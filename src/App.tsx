@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { Provider } from "react-redux";
 import { createHashRouter, RouterProvider, Outlet } from "react-router-dom";
 import { PrismicProvider } from "@prismicio/react";
@@ -10,8 +9,6 @@ import { Footer } from "./components/footer";
 import { Home } from "./pages/home";
 import { Clubs } from "./pages/clubs";
 import { Bridges } from "./pages/bridges";
-import { onMessageListener, requestForToken } from "./utils/firebase";
-import * as serviceWorker from "./serviceWorker";
 import { store } from "./store";
 import "./App.css";
 
@@ -50,16 +47,6 @@ const HashRouter = createHashRouter([
 ]);
 
 function App() {
-  useEffect(() => {
-    requestForToken();
-
-    console.log("App started with Firebase.");
-
-    onMessageListener().then((payload) => {
-      console.log("Message received. ", payload);
-    });
-  }, []);
-
   return (
     <PrismicProvider client={client}>
       <Provider store={store}>

@@ -1,3 +1,4 @@
+import InstallPWA from "../install/install-button";
 import "./index.css";
 
 export function Rules() {
@@ -98,6 +99,9 @@ export function Rules() {
             </p>
           </div>
         </div>
+        <p className="center">
+          <InstallPWA />
+        </p>
       </div>
     </section>
   );

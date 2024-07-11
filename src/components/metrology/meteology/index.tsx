@@ -10,7 +10,7 @@ export function Meteology() {
       {loading && <div className="alert">loading...</div>}
       {error && <div className="alert">{error.message}</div>}
       {!loading && !error && (
-        <div>
+        <div id="home-metrology">
           <h3>Meteo</h3>
           <div className="meteology-cards">
             {weatherData?.data.map((d) => (

@@ -1,8 +1,16 @@
-import { MapPinned, BookMarked, CloudSun } from "lucide-react";
+import {
+  MapPinned,
+  BookMarked,
+  CloudSun,
+  Bell,
+  BellOff,
+  BellRing,
+} from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { useBackToPage } from "../store/history/hooks";
 import "./header.css";
 import { useIsConnected } from "../store/common/hook";
+import NotifyButton from "./install/notify-button";
 
 export function Header() {
   const isConnected = useIsConnected();
@@ -38,6 +46,22 @@ export function Header() {
             <MapPinned strokeWidth={1} size={18} />
             <span className="desktop-only">Mappa</span>
           </Link>
+
+          <NotifyButton>
+            {(permission: NotificationPermission) => (
+              <>
+                {permission === "default" ? (
+                  <Bell strokeWidth={1} size={18} />
+                ) : null}
+                {permission === "granted" ? (
+                  <BellRing strokeWidth={1} size={18} />
+                ) : null}
+                {permission === "denied" ? (
+                  <BellOff strokeWidth={1} size={18} />
+                ) : null}
+              </>
+            )}
+          </NotifyButton>
         </nav>
       </div>
     </header>

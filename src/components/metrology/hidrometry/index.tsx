@@ -129,7 +129,7 @@ function CurrentWaterLevels({ data, labels }: TCurrentWaterLevelProps) {
 
   return (
     <>
-      <div className="metrics">
+      <div className="metrics" id="home-idro">
         {data.map((dataset) => {
           const sensorId = waterLevelSensors[dataset.id].id;
 

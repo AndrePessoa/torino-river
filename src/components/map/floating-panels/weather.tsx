@@ -1,10 +1,7 @@
 import { useMemo } from "react";
 import "./weather.css";
 import { useWeather } from "../../../store/weather/hook";
-import {
-  weatherSearchParams,
-  weatherSite,
-} from "../../../store/weather/statics";
+import { Link } from "react-router-dom";
 
 function getStatusClassname(rain: number) {
   if (rain < 2) {
@@ -42,12 +39,10 @@ export function WeatherPanel() {
   const status = getStatusClassname(rain || 0);
 
   return (
-    <a
+    <Link
       className={`floating-panel weather-panel ${status}`}
       title={title}
-      href={`${weatherSite}${weatherSearchParams}`}
-      target="_blank"
-      rel="noreferrer"
+      to="/home/metrology"
     >
       <div>
         <span className="water-level__label">Pioggia</span>
@@ -77,6 +72,6 @@ export function WeatherPanel() {
           <span className="water-level__unit">{units.wind_speed_10m}</span>
         </span>
       </div>
-    </a>
+    </Link>
   );
 }

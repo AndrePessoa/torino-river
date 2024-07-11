@@ -84,6 +84,10 @@ h3 {
     padding-bottom: 0;
   }
 
+  p.center {
+    text-align: center;
+  }
+
   h1,
   h2,
   h3 {

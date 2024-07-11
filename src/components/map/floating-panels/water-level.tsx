@@ -2,10 +2,8 @@ import { useMemo } from "react";
 import "./water-level.css";
 import { waterLevelSensors } from "../../../data";
 import { useWaterLevel, useWaterLevelAlert } from "../../../store/water/hooks";
-import {
-  WaterLevelStatus,
-  sensorOriginalURL,
-} from "../../../store/water/statics";
+import { WaterLevelStatus } from "../../../store/water/statics";
+import { Link } from "react-router-dom";
 
 function useStatusClassname(id: string) {
   const dataSensorStatus = useWaterLevelAlert(id);
@@ -37,12 +35,10 @@ export function WaterLevel({ sensorId = waterLevelSensors.CARIGNANO.id }) {
   }
 
   return (
-    <a
+    <Link
       className={`floating-panel weather-panel ${status}`}
       title={title}
-      href={sensorOriginalURL(sensorId)}
-      target="_blank"
-      rel="noreferrer"
+      to="/home/idro"
     >
       <div>
         <span className="water-level__label">Livelli del fiume</span>
@@ -51,6 +47,6 @@ export function WaterLevel({ sensorId = waterLevelSensors.CARIGNANO.id }) {
           <span className="water-level__unit">{unit || "m"}</span>
         </span>
       </div>
-    </a>
+    </Link>
   );
 }
