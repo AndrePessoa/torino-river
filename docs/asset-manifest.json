@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/torino-river/static/css/main.a5163f71.css",
-    "main.js": "/torino-river/static/js/main.eeb84ef5.js",
+    "main.css": "/torino-river/static/css/main.1db53853.css",
+    "main.js": "/torino-river/static/js/main.aa2d3929.js",
     "static/js/453.e80d9938.chunk.js": "/torino-river/static/js/453.e80d9938.chunk.js",
     "index.html": "/torino-river/index.html",
-    "main.a5163f71.css.map": "/torino-river/static/css/main.a5163f71.css.map",
-    "main.eeb84ef5.js.map": "/torino-river/static/js/main.eeb84ef5.js.map",
+    "main.1db53853.css.map": "/torino-river/static/css/main.1db53853.css.map",
+    "main.aa2d3929.js.map": "/torino-river/static/js/main.aa2d3929.js.map",
     "453.e80d9938.chunk.js.map": "/torino-river/static/js/453.e80d9938.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.a5163f71.css",
-    "static/js/main.eeb84ef5.js"
+    "static/css/main.1db53853.css",
+    "static/js/main.aa2d3929.js"
   ]
 }
