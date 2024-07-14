@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { onMessageListener, requestForToken } from "../../utils/firebase";
+import "./notify-button.css";
 
 function activeFirebaseNotification() {
   requestForToken();
 
-  console.log("App started with Firebase.");
-
   onMessageListener().then((payload) => {
+    // TODO toast system
     console.log("Message received. ", payload);
   });
 }
@@ -25,6 +25,10 @@ const NotifyButton = ({ children }: { children: any }) => {
   const [, forceUpdate] = useState(0);
 
   const onClick = () => {
+    if (!("Notification" in window)) {
+      return;
+    }
+
     if (Notification.permission === "granted") {
       activeFirebaseNotification();
       forceUpdate((i) => i + 1);
@@ -34,7 +38,7 @@ const NotifyButton = ({ children }: { children: any }) => {
       Notification.requestPermission().then((permission) => {
         console.log("permission", permission);
 
-        // If the user accepts, let's create a notification
+        // If the user accepts, let's connect to our server
         if (permission === "granted") {
           activeFirebaseNotification();
           forceUpdate((i) => i + 1);
@@ -44,20 +48,30 @@ const NotifyButton = ({ children }: { children: any }) => {
   };
 
   useEffect(() => {
-    if (Notification.permission === "granted") {
+    // If the user already accepted, let's connect to our server
+    if ("Notification" in window && Notification.permission === "granted") {
       activeFirebaseNotification();
     }
   }, []);
 
+  if (!("Notification" in window)) {
+    return null;
+  }
+
   return (
     <div
-      className="link-button"
+      className={`button ${
+        Notification.permission === "granted" ? "disabled" : ""
+      }`}
       id="setup_button"
       aria-label="Notification setup"
       title={getTitle(Notification.permission)}
       onClick={onClick}
+      style={{ opacity: "Notification" in window ? 1 : 0.5 }}
     >
-      {children?.(Notification.permission)}
+      {children?.(
+        "Notification" in window ? Notification.permission : "denied"
+      )}
     </div>
   );
 };

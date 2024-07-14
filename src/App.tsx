@@ -58,6 +58,4 @@ function App() {
   );
 }
 
-// serviceWorker.register({});
-
 export default App;
