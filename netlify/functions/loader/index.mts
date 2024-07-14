@@ -1,5 +1,5 @@
 import { doc, getDoc, setDoc } from "firebase/firestore";
-import getTimeByHalfHour from "../../../src/utils/get-time-by-halfhour";
+import { getTimeByHalfHour } from "../../../src/utils/get-time-by-halfhour";
 import loadProxy from "../../../src/utils/proxy";
 import { db } from "../../../src/utils/firebase-firestore";
 
