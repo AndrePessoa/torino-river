@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { onMessageListener, requestForToken } from "../../utils/firebase";
+import {
+  onMessageListener,
+  requestForToken,
+} from "../../utils/firebase-messaging";
 import "./notify-button.css";
 
 function activeFirebaseNotification() {
