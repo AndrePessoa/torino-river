@@ -36,7 +36,6 @@ export default async function loadProxy(event: any) {
 
   try {
     const response = await fetch(url, options);
-    const headers = response.headers;
     let contents = await response.text();
 
     // Transform relative URLs to absolute
@@ -50,21 +49,8 @@ export default async function loadProxy(event: any) {
       `src="${domain}`
     );
 
-    const result = {
-      headers: queryParams.full_headers ? headers : undefined,
-      status: queryParams.full_status ? await response.status : undefined,
-      contents: contents,
-    };
-
-    return {
-      statusCode: 200,
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(result),
-    };
+    return contents;
   } catch (error: any) {
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ error: "ERROR: " + error.message }),
-    };
+    return null;
   }
 }

@@ -70,8 +70,10 @@ export function useWaterLevel(sensorId: string) {
     url: proxyUrl,
     onStatus: (status) => updateFetcherStatus({ key: sensorId, status }),
     onData: (data) => {
-      const metric = data?.contents?.properties?.units_sym_html || {};
-      const idro = (data?.contents?.properties?.idro || {}) as IdroData;
+      const metric = data?.properties?.units_sym_html || {};
+      const idro = (data?.properties?.idro || {}) as IdroData;
+
+      console.log("idro", data);
 
       // sort by date
       const sorted = Object.entries(idro).sort(

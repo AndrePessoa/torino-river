@@ -109,13 +109,14 @@ export const useFetch = <T>({
         if (abortController.signal.aborted) return;
 
         if (data) {
-          onData(data);
           onStatus({ loading: false, error: null });
 
           return;
         }
 
-        onStatus({ loading: false, error });
+        console.error("Error fetching data", error.message);
+
+        onStatus({ loading: false, error: error.message });
       });
 
     return () => {

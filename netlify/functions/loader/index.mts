@@ -1,3 +1,4 @@
+import type { Handler } from "@netlify/functions";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { getTimeByHalfHour } from "../../../src/utils/get-time-by-halfhour";
 import loadProxy from "../../../src/utils/proxy";
@@ -40,12 +41,19 @@ const setCacheData = async (hash: string, data: any) => {
   });
 };
 
+const headers = {
+  "Content-Type": "application/json",
+  "Cache-Control": "public, max-age=1800",
+  // allow CORS
+  "Access-Control-Allow-Origin": "*",
+};
+
 /**
  * Get Firebase cached data or fetch it from the server and cache it
  */
-exports.handler = async (event, context) => {
+export const handler: Handler = async (event, context) => {
   const queryParams = event.queryStringParameters;
-  const { url } = queryParams;
+  const { url } = queryParams as { url: string };
 
   const timestamp = getTimeByHalfHour();
   const hash = cyrb53(`${url}-${timestamp}`);
@@ -60,11 +68,13 @@ exports.handler = async (event, context) => {
 
       return {
         statusCode: 200,
-        body: JSON.stringify(data),
+        headers,
+        body: data,
       };
     } catch (error) {
       return {
         statusCode: 500,
+        headers,
         body: JSON.stringify({ error: error.message }),
       };
     }
@@ -72,6 +82,7 @@ exports.handler = async (event, context) => {
 
   return {
     statusCode: 200,
-    body: JSON.stringify(cachedData),
+    headers,
+    body: cachedData,
   };
 };

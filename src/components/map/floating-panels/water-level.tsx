@@ -20,7 +20,7 @@ function useStatusClassname(id: string) {
 export function WaterLevel({ sensorId = waterLevelSensors.CARIGNANO.id }) {
   const { waterLevel, unit, error, loading } = useWaterLevel(sensorId);
   const status = useStatusClassname(sensorId);
-  const [date, { value }] = waterLevel?.at(-1) || ["", {}];
+  const [date, { value }] = waterLevel?.at(-1) || ["", ""];
 
   const title = useMemo(() => {
     return `Sensor MONCALIERI PO at ${new Date(date).toLocaleString()}`;
@@ -31,6 +31,10 @@ export function WaterLevel({ sensorId = waterLevelSensors.CARIGNANO.id }) {
   }
 
   if (error) {
+    return null;
+  }
+
+  if (!value || !unit) {
     return null;
   }
 
