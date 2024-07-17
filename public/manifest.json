@@ -24,8 +24,20 @@
       "type": "image/svg+xml"
     }
   ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#282842"
+  "start_url": "./",
+  "display": "fullscreen",
+  "theme_color": "#282842",
+  "background_color": "#282842",
+  "id": "torinoriver",
+  "dir": "ltr",
+  "lang": "it",
+  "scope": "torinoriver.netlify.app/",
+  "orientation": "portrait",
+  "protocol_handlers": [
+    {
+      "protocol": "torinoriver",
+      "url": "https://torinoriver.netlify.app"
+    }
+  ],
+  "categories": ["lifestyle", "sports", "weather"]
 }

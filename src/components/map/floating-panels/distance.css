@@ -1,6 +1,6 @@
 .distance_percent-container {
   position: absolute;
-  top: 0;
+  top: -5px;
   left: 0;
   right: 0;
   background-color: #d6d6d6;
