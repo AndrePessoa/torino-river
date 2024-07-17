@@ -73,18 +73,27 @@ function MarkerMobile({
   }
 
   return createPortal(
-    <div className="leaflet-popup-content-wrapper">
+    <>
+      <div className="leaflet-popup-content-wrapper">
+        <a
+          className="leaflet-popup-close-button"
+          onClick={closeHandler}
+          role="button"
+          aria-label="Close popup"
+          href="#close"
+        >
+          ×
+        </a>
+        <div className="leaflet-popup-content"> {children}</div>
+      </div>
       <a
-        className="leaflet-popup-close-button"
+        className="leaflet-popup-close-overflow"
         onClick={closeHandler}
         role="button"
         aria-label="Close popup"
         href="#close"
-      >
-        ×
-      </a>
-      <div className="leaflet-popup-content"> {children}</div>
-    </div>,
+      />
+    </>,
     document.getElementById("mobile-sidebar") || document.body
   );
 }

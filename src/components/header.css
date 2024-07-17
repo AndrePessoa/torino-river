@@ -53,4 +53,10 @@ header {
       color: #2a1f43;
     }
   }
+
+  @media screen and (max-width: 740px) {
+    & nav {
+      gap: 1.5em;
+    }
+  }
 }
