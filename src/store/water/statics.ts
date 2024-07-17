@@ -6,8 +6,11 @@ export const sensorOriginalURL = (sensorId: string) =>
 export const sensorURL = (sensorId: string) =>
   `https://www.arpa.piemonte.it/rischi_naturali/data/tr/idro/${sensorId}.geojson`;
 
+const proxyServer =
+  process.env.NODE_ENV === "production" ? "." : "http://localhost:8888";
+
 export const proxyURL = (sensorURL: string) =>
-  `http://localhost:8888/.netlify/functions/loader?url=${encodeURI(
+  `${proxyServer}/.netlify/functions/loader?url=${encodeURI(
     sensorURL
   )}&nocache=${getTimeByHalfHour()}`;
 
