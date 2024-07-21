@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { PrismicDocument } from "@prismicio/client/*";
 import { useAllPrismicDocumentsByType } from "@prismicio/react";
 import { TPrismicData } from "../types";
+import { getCacheData } from "../../data/proxy-cache";
 
 export const useIsConnected = () => {
   const [isConnected, setIsConnected] = useState(navigator.onLine);
@@ -77,6 +78,7 @@ type TFectchProps<T> = {
   onData: (data: T) => void;
   errorMessage?: string;
   noCache?: boolean;
+  cacheDB?: boolean;
 };
 
 export const useFetch = <T>({
@@ -85,8 +87,10 @@ export const useFetch = <T>({
   onData,
   errorMessage,
   noCache,
+  cacheDB = false,
 }: TFectchProps<T>) => {
   const [data, cacheData] = useLocalCache<T>(url);
+  const [tryCacheDB, setTryCacheDB] = useState(cacheDB);
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -95,6 +99,23 @@ export const useFetch = <T>({
     if (!noCache) return;
 
     onStatus({ loading: true, error: null });
+
+    if (tryCacheDB) {
+      getCacheData<T>(url)
+        .then((data) => {
+          if (data) {
+            onData(data);
+            onStatus({ loading: false, error: null });
+
+            return;
+          }
+
+          setTryCacheDB(false);
+        })
+        .catch(() => {
+          setTryCacheDB(false);
+        });
+    }
 
     fetch(url, { signal })
       .then((response) => {
@@ -122,7 +143,7 @@ export const useFetch = <T>({
     return () => {
       abortController.abort(errorMessage || "Fetch aborted");
     };
-  }, []);
+  }, [tryCacheDB]);
 };
 
 export const useAllPrismicByType = <T>(

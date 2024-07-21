@@ -132,19 +132,21 @@ function CurrentWaterLevels({ data, labels }: TCurrentWaterLevelProps) {
       <div className="metrics" id="home-idro">
         {data.map((dataset) => {
           const sensorId = waterLevelSensors[dataset.id].id;
+          const { label, data } = dataset;
+          const value = [...data].reverse().find((v) => v !== null);
+          const isLast = data.at(-1) === value;
 
           return (
             <a
-              title={dataset.label}
+              title={label}
               href={sensorOriginalURL(sensorId)}
               target="_blank"
               rel="noreferrer"
-              key={dataset.label}
-              className="metric"
+              key={label}
+              className={"metric" + (!isLast ? " old" : "")}
             >
               <span>
-                <strong>{dataset.label}</strong>:{" "}
-                <span>{dataset.data.at(-1)}m</span>
+                <strong>{label}</strong>: <span>{value}m</span>
               </span>
               <CurrentWaterLevelsIcon id={sensorId} />
             </a>

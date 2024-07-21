@@ -1,6 +1,6 @@
 import fetch from "node-fetch";
 
-export default async function loadProxy(event: any) {
+export async function loadProxy(event: any) {
   const queryParams = event.queryStringParameters;
   const { url } = queryParams;
 

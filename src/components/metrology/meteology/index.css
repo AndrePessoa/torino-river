@@ -32,6 +32,11 @@ section.metrology {
       background-color: white;
       padding: 0.5em;
 
+      &.old {
+        font-style: italic;
+        color: #898989;
+      }
+
       .level-alert {
         font-size: 0.8em;
         display: flex;
@@ -53,6 +58,7 @@ section.metrology {
       }
 
       &:hover {
+        color: black !important;
         background-color: rgb(224, 208, 250);
         outline: 1px solid var(--color-bg-blue);
       }

@@ -73,8 +73,6 @@ export function useWaterLevel(sensorId: string) {
       const metric = data?.properties?.units_sym_html || {};
       const idro = (data?.properties?.idro || {}) as IdroData;
 
-      console.log("idro", data);
-
       // sort by date
       const sorted = Object.entries(idro).sort(
         ([a], [b]) => new Date(a).getTime() - new Date(b).getTime()
@@ -90,6 +88,7 @@ export function useWaterLevel(sensorId: string) {
     },
     errorMessage: "Unmounted water level component",
     noCache,
+    cacheDB: true,
   });
 
   return { waterLevel: data, unit, error, loading };
